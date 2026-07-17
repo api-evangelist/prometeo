@@ -1,0 +1,82 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Prometeo
+providerId: prometeo
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Open Banking
+- Payments
+- FinTech
+- LatAm
+- Plans
+description: >-
+  Prometeo does not publish per-call or per-request price cards on a public
+  pricing page. Access begins with a free, self-service sandbox (mock data,
+  sandbox API key issued on first login at dashboard.prometeoapi.com). Production
+  access is commercial and quote-based: pricing is negotiated with sales based on
+  product mix (Banking, Account Validation, Cross-Border, Payment, Identity,
+  Fiscal), country coverage, and volume. No public free-forever production tier
+  is documented.
+notes: >-
+  Pricing figures are intentionally NOT invented here - Prometeo gates
+  production pricing behind sales. Reconcile against a signed order form / MSA if
+  commercial terms become available. Reference: prometeoapi.com/en/legal/msa.
+sources:
+- https://prometeoapi.com/en
+- https://docs.prometeoapi.com/docs/c%C3%B3mo-comenzar-a-utilizar-nuestro-sandbox
+- https://prometeoapi.com/en/legal/msa
+plans:
+- id: prometeo-sandbox
+  name: Sandbox
+  type: free
+  description: >-
+    Free self-service sandbox with mock data across products, for validating
+    integration logic without moving real funds. Sandbox API key is issued
+    immediately on first dashboard login.
+  entries:
+  - label: Sandbox Access
+    name: sandbox
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Banking (mock)
+  - name: Account Validation (mock)
+  - name: Cross-Border (mock)
+  - name: Identity / CURP (mock)
+- id: prometeo-production
+  name: Production
+  type: enterprise
+  description: >-
+    Commercial production access across the requested product surfaces and
+    countries. Pricing is quote-based and negotiated with Prometeo sales; billing
+    reflects product mix and transaction / query volume.
+  entries:
+  - label: Production Agreement
+    name: production
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Banking API
+  - name: Account Validation API
+  - name: Cross-Border Payments API
+  - name: Payment API
+  - name: Identity API (CURP)
+  - name: Fiscal API (DIAN / SAT / CEP / BCU)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

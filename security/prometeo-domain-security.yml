@@ -1,0 +1,35 @@
+generated: '2026-07-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: prometeoapi.com
+  https: true
+  note: Marketing and developer entry point; probe TLS on reconciliation.
+- host: docs.prometeoapi.com
+  https: true
+  note: Developer documentation (ReadMe-hosted).
+- host: banking.prometeoapi.net
+  https: true
+  note: Banking API production host.
+- host: account-validation.prometeoapi.net
+  https: true
+  note: Account Validation API production host.
+- host: crossborder.secure.prometeoapi.net
+  https: true
+  note: Cross-Border API production host (v1 base path).
+- host: payment.prometeoapi.net
+  https: true
+  note: Payment API production host.
+- host: identity.prometeoapi.net
+  https: true
+  note: Identity (CURP) API production host.
+- host: fiscal.prometeoapi.net
+  https: true
+  note: Fiscal (DIAN / SAT / CEP / BCU) API production host.
+domains:
+- domain: prometeoapi.com
+  note: >-
+    Primary brand domain. Production API surfaces are served from the
+    prometeoapi.net apex; sandbox surfaces from *.sandbox.prometeoapi.com.
+    DNSSEC / CAA / SPF / DMARC not reconciled in this artifact - verify on the
+    next live-probe pass.

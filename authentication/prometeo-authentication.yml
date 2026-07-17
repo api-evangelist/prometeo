@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/prometeo-openapi.yml
+summary:
+  types:
+  - apiKey
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameterName: X-API-Key
+  sources:
+  - openapi/prometeo-openapi.yml
+  - https://docs.prometeoapi.com
+notes: >-
+  Every Prometeo product (Banking, Account Validation, Cross-Border, Payment,
+  Identity, Fiscal) authenticates the application with a per-account API key sent
+  in the X-API-Key request header. Keys are issued from
+  dashboard.prometeoapi.com; a mock-data sandbox key is available immediately on
+  first login. The Banking API additionally establishes a per-end-user session:
+  POST /login/ (optionally answered via /login-procedure/ for MFA) returns a
+  session `key` that is passed as a query parameter on subsequent Banking calls.
+  Prometeo documentation notes that some services may additionally require mutual
+  TLS (mTLS), with the applicable method stated per service in the technical docs.

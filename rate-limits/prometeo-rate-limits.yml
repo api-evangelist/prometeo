@@ -1,0 +1,54 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Prometeo
+providerId: prometeo
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Open Banking
+- Payments
+- FinTech
+- LatAm
+- Rate Limiting
+- Quotas
+description: >-
+  Prometeo does not publish specific numeric rate limits on its public
+  documentation. Practical throughput on the Banking API is additionally bounded
+  by upstream bank connections and by the asynchronous scrape/poll pattern
+  (submit an operation, then poll a task/result endpoint). Production quotas are
+  set per commercial agreement. Values are not reconciled in this artifact.
+notes: >-
+  No public rate-limit numbers were found; do not invent them. Confirm concrete
+  per-product limits and any 429 semantics with Prometeo during onboarding /
+  reconciliation.
+sources:
+- https://docs.prometeoapi.com
+- https://prometeoapi.com/en
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-account request rate
+  scope: account
+  metric: requests
+  limit: see provider / commercial agreement
+  notes: Not published publicly; negotiated per production agreement.
+- name: Banking upstream latency
+  scope: session
+  metric: requests
+  limit: bounded by bank connection
+  notes: >-
+    Banking operations depend on live bank connections; long-running scrapes are
+    resolved via an async task/result poll rather than a fixed synchronous quota.
+policies:
+- name: Asynchronous polling
+  description: >-
+    Long-running banking operations return a task handle; clients poll a
+    task/result endpoint until completion rather than holding a synchronous
+    connection.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

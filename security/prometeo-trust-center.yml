@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: searched
+probe: true
+source: https://prometeoapi.com/en
+url: https://prometeoapi.com/en
+certifications:
+- ISO 27001
+- SOC 2
+- GDPR
+compliance:
+- PCI DSS (payment flows)
+- Nacha Preferred Partner (US ACH ecosystem)
+evidence:
+- source: https://prometeoapi.com/en
+  keywords:
+  - iso 27001
+  - soc 2
+  - security
+  - compliance
+- source: https://www.nacha.org/content/prometeo
+  keywords:
+  - nacha preferred partner
+notes: >-
+  Prometeo positions itself as regulated financial infrastructure across LatAm
+  and the US. Certifications listed here are from marketing/partner pages and
+  should be reconciled against a formal trust center or security whitepaper on
+  the next pass; PCI DSS applies to money-movement (Payment / Cross-Border)
+  surfaces.

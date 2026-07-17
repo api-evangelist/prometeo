@@ -1,0 +1,303 @@
+{
+  "info": {
+    "_postman_id": "b7c1e9a2-3d4f-4a1b-9c8e-prometeo000001",
+    "name": "Prometeo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Prometeo single financial API for LatAm and the US. Covers the Banking, Account Validation, Cross-Border, Payment, and Identity (CURP) products. Each product runs on its own host; set the {{bankingUrl}}, {{validationUrl}}, {{crossborderUrl}}, {{paymentUrl}}, and {{identityUrl}} variables. All requests authenticate with the X-API-Key header ({{apiKey}}). Modeled from https://docs.prometeoapi.com and the official prometeo-python SDK.",
+      "type": "text/plain"
+    }
+  },
+  "item": [
+    {
+      "name": "Banking",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{bankingUrl}}/login/",
+              "host": ["{{bankingUrl}}"],
+              "path": ["login", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "provider", "value": "test" },
+                { "key": "username", "value": "12345" },
+                { "key": "password", "value": "gfdsa" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List accounts",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-API-Key", "value": "{{apiKey}}" }],
+            "url": {
+              "raw": "{{bankingUrl}}/account/?key={{sessionKey}}",
+              "host": ["{{bankingUrl}}"],
+              "path": ["account", ""],
+              "query": [{ "key": "key", "value": "{{sessionKey}}" }]
+            }
+          }
+        },
+        {
+          "name": "List movements",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-API-Key", "value": "{{apiKey}}" }],
+            "url": {
+              "raw": "{{bankingUrl}}/movement/?key={{sessionKey}}&account=002345678&currency=USD&date_start=01/07/2026&date_end=17/07/2026",
+              "host": ["{{bankingUrl}}"],
+              "path": ["movement", ""],
+              "query": [
+                { "key": "key", "value": "{{sessionKey}}" },
+                { "key": "account", "value": "002345678" },
+                { "key": "currency", "value": "USD" },
+                { "key": "date_start", "value": "01/07/2026" },
+                { "key": "date_end", "value": "17/07/2026" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List providers",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-API-Key", "value": "{{apiKey}}" }],
+            "url": {
+              "raw": "{{bankingUrl}}/provider/",
+              "host": ["{{bankingUrl}}"],
+              "path": ["provider", ""]
+            }
+          }
+        },
+        {
+          "name": "Preprocess transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{bankingUrl}}/transfer/preprocess",
+              "host": ["{{bankingUrl}}"],
+              "path": ["transfer", "preprocess"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "key", "value": "{{sessionKey}}" },
+                { "key": "origin_account", "value": "002345678" },
+                { "key": "destination_account", "value": "009876543" },
+                { "key": "currency", "value": "USD" },
+                { "key": "amount", "value": "100.00" },
+                { "key": "concept", "value": "invoice 42" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Confirm transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{bankingUrl}}/transfer/confirm",
+              "host": ["{{bankingUrl}}"],
+              "path": ["transfer", "confirm"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "key", "value": "{{sessionKey}}" },
+                { "key": "request_id", "value": "{{transferRequestId}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-API-Key", "value": "{{apiKey}}" }],
+            "url": {
+              "raw": "{{bankingUrl}}/logout/?key={{sessionKey}}",
+              "host": ["{{bankingUrl}}"],
+              "path": ["logout", ""],
+              "query": [{ "key": "key", "value": "{{sessionKey}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Account Validation",
+      "item": [
+        {
+          "name": "Validate account",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{validationUrl}}/validate-account/",
+              "host": ["{{validationUrl}}"],
+              "path": ["validate-account", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_number\": \"002345678\",\n  \"country_code\": \"MX\",\n  \"bank_code\": \"012\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cross-Border",
+      "item": [
+        {
+          "name": "Create pay-in intent",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{crossborderUrl}}/payin/intent",
+              "host": ["{{crossborderUrl}}"],
+              "path": ["payin", "intent"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 250.00,\n  \"currency\": \"USD\",\n  \"country\": \"MX\",\n  \"customer_id\": \"{{customerId}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Create payout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{crossborderUrl}}/payout/transfer",
+              "host": ["{{crossborderUrl}}"],
+              "path": ["payout", "transfer"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 250.00,\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"beneficiary_account\": \"009876543\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "FX exchange",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{crossborderUrl}}/fx/exchange",
+              "host": ["{{crossborderUrl}}"],
+              "path": ["fx", "exchange"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from_currency\": \"USD\",\n  \"to_currency\": \"BRL\",\n  \"amount\": 250.00\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Create payment intent",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{paymentUrl}}/api/v1/payment-intent/",
+              "host": ["{{paymentUrl}}"],
+              "path": ["api", "v1", "payment-intent", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100.00,\n  \"currency\": \"USD\",\n  \"concept\": \"order 1001\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Identity",
+      "item": [
+        {
+          "name": "CURP query",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{identityUrl}}/query",
+              "host": ["{{identityUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"curp\": \"HEGG560427MVZRRL05\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "bankingUrl", "value": "https://banking.sandbox.prometeoapi.com", "type": "string" },
+    { "key": "validationUrl", "value": "https://account-validation.sandbox.prometeoapi.com", "type": "string" },
+    { "key": "crossborderUrl", "value": "https://crossborder-api.sandbox.prometeoapi.com", "type": "string" },
+    { "key": "paymentUrl", "value": "https://payment.prometeoapi.net", "type": "string" },
+    { "key": "identityUrl", "value": "https://identity.sandbox.prometeoapi.com", "type": "string" },
+    { "key": "apiKey", "value": "YOUR_SANDBOX_API_KEY", "type": "string" },
+    { "key": "sessionKey", "value": "", "type": "string" }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-API-Key" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  }
+}

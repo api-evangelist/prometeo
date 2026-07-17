@@ -1,0 +1,66 @@
+aid: prometeo
+name: Prometeo
+review:
+  question: Does Prometeo expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-17'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Prometeo's products are request/response
+    HTTPS REST APIs returning JSON. There is no documented WebSocket (ws:// or
+    wss://) surface and no HTTP Server-Sent Events (SSE) stream. Asynchronous
+    banking scrapes are polled via a task/result pattern (e.g. /task-result),
+    and event delivery is via outbound HTTP webhooks (POST /webhook-event to a
+    consumer-hosted URL) - neither is WebSocket nor SSE, so nothing was modeled.
+findings:
+  summary: |
+    Prometeo does not publish a documented public WebSocket API. Every Prometeo
+    product - Banking, Account Validation, Cross-Border, Payment, Identity
+    (CURP), and Fiscal - is exposed as an HTTPS REST API returning JSON,
+    authenticated with the X-API-Key header, each on its own host. Long-running
+    banking operations are handled with an asynchronous poll pattern (submit,
+    then GET a task/result), and provider-to-consumer notifications are sent as
+    outbound HTTP webhooks. No realtime, bidirectional, or streaming
+    WebSocket/SSE endpoint is documented as of the review date.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://banking.prometeoapi.net
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP POST callbacks to a consumer-hosted URL (POST /webhook-event). Not WebSocket, not SSE.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented across any Prometeo product host as of the review date.
+  hostsConfirmedRest:
+    - https://banking.prometeoapi.net (Banking - production)
+    - https://banking.sandbox.prometeoapi.com (Banking - sandbox)
+    - https://account-validation.prometeoapi.net (Account Validation)
+    - https://crossborder.secure.prometeoapi.net/v1 (Cross-Border)
+    - https://payment.prometeoapi.net (Payment)
+    - https://identity.prometeoapi.net (Identity / CURP)
+    - https://fiscal.prometeoapi.net (Fiscal - DIAN / SAT / CEP / BCU)
+sources:
+  - url: https://docs.prometeoapi.com
+    type: Documentation
+    note: Product docs describe HTTPS REST endpoints and X-API-Key auth; no WebSocket mentioned.
+  - url: https://docs.prometeoapi.com/docs/3-acceso-a-los-datos
+    type: Documentation
+    note: Banking data access - login/accounts/movements over HTTPS REST.
+  - url: https://github.com/prometeoapi/prometeo-python
+    type: SDK
+    note: Official Python client issues only HTTPS REST calls; no WebSocket transport.
+  - url: https://github.com/prometeoapi/prometeo-mcp
+    type: SDK
+    note: Official MCP server wraps REST product endpoints; no WebSocket surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket or SSE protocol surface exists. Prometeo is pure request/response
+    HTTPS REST with webhook callbacks and a polling task pattern, so no AsyncAPI
+    document was created and no AsyncAPI pointer was added to apis.yml.

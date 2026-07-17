@@ -1,0 +1,126 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Prometeo
+providerId: prometeo
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Open Banking
+- Payments
+- FinTech
+- LatAm
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Prometeo spend. Prometeo bills commercial production usage under
+  a quote-based agreement rather than a public price card. Cost drivers are
+  per-product transaction and query counts: banking sessions / data pulls,
+  account-validation checks, cross-border pay-ins and payouts (plus FX spread),
+  payment intents, identity (CURP) queries, and fiscal lookups. The sandbox is
+  free (mock data).
+notes: >-
+  Because Prometeo does not publish unit rates, cost allocation here is modeled
+  by billable event type; attach negotiated rates from the order form during
+  reconciliation. FX flows carry an exchange spread in addition to any per-txn fee.
+sources:
+- https://prometeoapi.com/en
+- https://docs.prometeoapi.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Prometeo
+serviceCategory: Financial Services
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Prometeo API
+  ServiceCategory: Financial Services
+  ProviderName: Prometeo
+  PublisherName: Prometeo
+  InvoiceIssuerName: Prometeo
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: banking_operations
+  description: Banking API sessions and data pulls (login, accounts, movements, credit cards).
+  unit: operations
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+  - country
+- name: account_validations
+  description: Real-time bank account verification checks.
+  unit: checks
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+- name: crossborder_payins
+  description: Cross-border pay-in intents settled.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - corridor
+- name: crossborder_payouts
+  description: Cross-border payouts executed over local rails.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - corridor
+- name: fx_volume
+  description: FX exchange volume (carries an exchange spread).
+  unit: currency_units
+  aggregation: sum
+  dimensions:
+  - account
+  - currency_pair
+- name: payment_intents
+  description: Account-to-account payment intents created.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+- name: identity_queries
+  description: CURP identity queries and reverse queries.
+  unit: queries
+  aggregation: sum
+  dimensions:
+  - account
+- name: fiscal_queries
+  description: Fiscal data lookups (DIAN / SAT / CEP / BCU).
+  unit: queries
+  aggregation: sum
+  dimensions:
+  - account
+  - source
+principles:
+- name: Visibility
+  description: Track billable events per product and country from Prometeo invoices / dashboard.
+- name: Allocation
+  description: Tag API keys per workload / entity and map to internal cost centers.
+- name: Optimization
+  description: >-
+    Validate accounts before payouts to cut failed-transfer costs; batch banking
+    pulls; pick the narrowest product/country footprint needed.
+- name: Accountability
+  description: Assign owners per product line; review transaction volume monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,170 @@
+aid: prometeo
+url: https://raw.githubusercontent.com/api-evangelist/prometeo/refs/heads/main/apis.yml
+name: Prometeo
+kind: company
+description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure company
+  offering a single financial API over 7,500+ banking connections across the
+  Americas. Products span banking data access, real-time account validation,
+  cross-border pay-in / payout / FX, account-to-account payments, Mexican CURP
+  identity, and fiscal data (DIAN / SAT / CEP / BCU). All products authenticate
+  with an X-API-Key header and offer a mock-data sandbox.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Open Banking
+- Payments
+- FinTech
+- LatAm
+- Financial Data
+- Account Validation
+- Cross-Border
+created: '2026-07-17'
+modified: '2026-07-17'
+specificationVersion: '0.19'
+apis:
+- aid: prometeo:prometeo-banking-api
+  name: Prometeo Banking API
+  tags:
+  - Open Banking
+  - Account Information
+  - Movements
+  - Transfers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.prometeoapi.com/docs/introducci%C3%B3n-1
+  baseURL: https://banking.prometeoapi.net
+  properties:
+  - url: https://docs.prometeoapi.com/docs/3-acceso-a-los-datos
+    type: Documentation
+  - url: https://docs.prometeoapi.com/reference/listtransactions-1
+    type: APIReference
+  - url: openapi/prometeo-openapi.yml
+    type: OpenAPI
+  - url: collections/prometeo.postman_collection.json
+    type: PostmanCollection
+  description: Bank-account access across 7,500+ LatAm banking connections -
+    session login (with MFA), accounts, movements/transactions, credit cards,
+    providers, and account-to-account transfers. Sandbox host
+    banking.sandbox.prometeoapi.com uses mock data.
+- aid: prometeo:prometeo-account-validation-api
+  name: Prometeo Account Validation API
+  tags:
+  - Account Validation
+  - Bank Account Verification
+  - Anti-Fraud
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://prometeoapi.com/en/bank-account-verification
+  baseURL: https://account-validation.prometeoapi.net
+  properties:
+  - url: https://docs.prometeoapi.com/reference/validateaccount
+    type: APIReference
+  - url: openapi/prometeo-openapi.yml
+    type: OpenAPI
+  - url: collections/prometeo.postman_collection.json
+    type: PostmanCollection
+  description: Real-time bank account verification confirming an account is valid,
+    reachable, and owned before initiating a transfer or debit, across LatAm
+    markets and the US.
+- aid: prometeo:prometeo-cross-border-api
+  name: Prometeo Cross-Border Payments API
+  tags:
+  - Cross-Border
+  - Payouts
+  - Pay-In
+  - FX
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://prometeoapi.com/en/bank-transfer-payments
+  baseURL: https://crossborder.secure.prometeoapi.net/v1
+  properties:
+  - url: https://docs.prometeoapi.com
+    type: Documentation
+  - url: openapi/prometeo-openapi.yml
+    type: OpenAPI
+  - url: collections/prometeo.postman_collection.json
+    type: PostmanCollection
+  description: Cross-border money movement - pay-in intents (virtual accounts / QR),
+    payouts over local rails, FX exchange, customer and withdrawal-account
+    management. Sandbox host crossborder-api.sandbox.prometeoapi.com.
+- aid: prometeo:prometeo-payment-api
+  name: Prometeo Payment API
+  tags:
+  - Payments
+  - Account to Account
+  - Payment Initiation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://prometeoapi.com/en/bank-transfer-payments
+  baseURL: https://payment.prometeoapi.net
+  properties:
+  - url: https://docs.prometeoapi.com
+    type: Documentation
+  - url: openapi/prometeo-openapi.yml
+    type: OpenAPI
+  - url: collections/prometeo.postman_collection.json
+    type: PostmanCollection
+  description: Open-banking payment initiation - create and retrieve
+    account-to-account payment intents that move funds directly from a payer's
+    bank account.
+- aid: prometeo:prometeo-identity-api
+  name: Prometeo Identity API (CURP)
+  tags:
+  - Identity
+  - KYC
+  - CURP
+  - Mexico
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.prometeoapi.com
+  baseURL: https://identity.prometeoapi.net
+  properties:
+  - url: https://docs.prometeoapi.com
+    type: Documentation
+  - url: openapi/prometeo-openapi.yml
+    type: OpenAPI
+  - url: collections/prometeo.postman_collection.json
+    type: PostmanCollection
+  description: Mexican CURP identity lookups - query a CURP record by code, or
+    reverse-query a CURP from demographic data for KYC and onboarding.
+- aid: prometeo:prometeo-fiscal-api
+  name: Prometeo Fiscal API
+  tags:
+  - Fiscal
+  - Tax Data
+  - DIAN
+  - SAT
+  - BCU
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.prometeoapi.com
+  baseURL: https://fiscal.prometeoapi.net
+  properties:
+  - url: https://docs.prometeoapi.com
+    type: Documentation
+  description: Government / fiscal data access - Colombia DIAN, Mexico SAT and CEP
+    (payment receipt), and Uruguay BCU (central bank) filings and statements.
+    Sandbox host fiscal.sandbox.prometeoapi.com.
+common:
+- type: AgenticAccess
+  url: agentic-access/prometeo-agentic-access.yml
+- type: TrustCenter
+  url: security/prometeo-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/prometeo-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/prometeo-domain-security.yml
+- type: Authentication
+  url: authentication/prometeo-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/prometeoapi
+- type: LinkedIn
+  url: https://www.linkedin.com/company/prometeoapi
+- type: Website
+  url: https://prometeoapi.com/en
+- type: Documentation
+  url: https://docs.prometeoapi.com
+- type: Plans
+  url: plans/prometeo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/prometeo-rate-limits.yml
+- type: FinOps
+  url: finops/prometeo-finops.yml
+- url: https://prometeoapi.com/en/blog
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
