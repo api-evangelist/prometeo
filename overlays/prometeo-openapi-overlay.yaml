@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Prometeo API
+  version: 1.0.0
+extends: openapi/prometeo-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-17'
+      x-apievangelist-mcp: https://github.com/prometeoapi/prometeo-mcp
+      x-apievangelist-sdk: https://pypi.org/project/prometeo/
+      x-apievangelist-webhooks: asyncapi/prometeo-webhooks.yml
+  - target: $.info
+    update:
+      x-provenance: >-
+        Spec modeled from docs.prometeoapi.com + prometeo-python SDK; Prometeo
+        publishes no single downloadable first-party OpenAPI document.
+  - target: $.tags
+    update:
+      - name: Cross-Border
+        x-agentic-consequence: physical
+        description: >-
+          Pay-in intents, payouts over local rails, and FX exchange - money-movement operations.
+  - target: "$.paths['/payout/transfer'].post"
+    update:
+      x-agentic-consequence: physical
+      x-idempotency: none-documented
+  - target: "$.paths['/transfer/confirm'].post"
+    update:
+      x-agentic-consequence: physical
+      x-idempotency: staged-request-id

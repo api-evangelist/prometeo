@@ -1,0 +1,39 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/prometeoapi
+packages:
+  - language: python
+    registry: pypi
+    name: prometeo
+    url: https://pypi.org/project/prometeo/
+    repo: https://github.com/prometeoapi/prometeo-python
+    docs: https://prometeo-python.readthedocs.io/en/stable/
+    install: pip install prometeo
+    version: 1.2.3
+    official: true
+    description: >-
+      Official Prometeo API Python client. Initialize with
+      Client('<API_KEY>', environment='testing'|'production'); exposes
+      banking, curp, dian, sat, account_validation and cross-border namespaces.
+  - language: python
+    registry: github
+    name: prometeo-mcp
+    url: https://github.com/prometeoapi/prometeo-mcp
+    repo: https://github.com/prometeoapi/prometeo-mcp
+    install: uv run prometeo_mcp/server.py
+    official: true
+    description: >-
+      Official Model Context Protocol (MCP) server for the Prometeo API
+      (stdio transport). See mcp/prometeo-mcp.yml for the tool surface.
+  - language: python
+    registry: pypi
+    name: prometeo-cli
+    url: https://pypi.org/project/prometeo-cli/
+    repo: https://github.com/dieg0moraes/prometeo-cli
+    install: pip install prometeo-cli
+    version: 1.0.1
+    official: false
+    description: >-
+      Community command-line client for the Prometeo Banking API (authored by
+      Diego Moraes, last released 2022) - config/login/accounts/cards/movements/
+      providers commands. Not a first-party Prometeo release.

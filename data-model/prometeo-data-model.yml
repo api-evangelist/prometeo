@@ -1,0 +1,54 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/prometeo-openapi.yml
+entities:
+  - name: Session
+    id_field: key
+    description: Per-end-user banking session created by /login/; carried as the `key` query param.
+    fields: [status, key, context, field]
+  - name: Client
+    description: A user's associated bank client/profile within a session (a user may have several).
+  - name: Account
+    id_field: id
+    fields: [id, name, number, branch, currency, balance]
+  - name: Movement
+    id_field: id
+    fields: [id, reference, date, detail, debit, credit]
+  - name: CreditCard
+    id_field: card_number
+  - name: Provider
+    id_field: provider_code
+    description: A connectable banking institution (from /provider/).
+  - name: Transfer
+    id_field: request_id
+    fields: [key, origin_account, destination_institution, destination_account, currency, amount, concept]
+    description: Staged via /transfer/preprocess, executed via /transfer/confirm.
+  - name: AccountValidation
+    description: Bank-account verification result (validity + ownership).
+    fields: [account_number, country_code, bank_code, document_number]
+  - name: PayinIntent
+    id_field: intent_id
+    description: Cross-border pay-in (virtual account / QR).
+  - name: Payout
+    id_field: payout_id
+    description: Cross-border payout over local rails.
+  - name: PaymentIntent
+    id_field: intent_id
+    description: Account-to-account (open banking) payment intent.
+  - name: CurpRecord
+    id_field: curp
+    description: Mexican CURP identity record.
+relationships:
+  - {from: Session, to: Client, type: has_many, via: client_id}
+  - {from: Client, to: Account, type: has_many}
+  - {from: Session, to: Account, type: has_many}
+  - {from: Account, to: Movement, type: has_many, via: account}
+  - {from: CreditCard, to: Movement, type: has_many, via: card_number}
+  - {from: Provider, to: Session, type: has_many, via: provider}
+  - {from: Session, to: Transfer, type: has_many, via: key}
+  - {from: Transfer, to: Account, type: belongs_to, via: origin_account}
+  - {from: PayinIntent, to: Payout, type: has_many}
+notes: >-
+  Derived from OpenAPI schemas and id-reference fields. Banking objects are
+  session-scoped (joined by the `key` session token) rather than by a global
+  customer id; cross-border/payment intents are addressed by intent_id/payout_id.

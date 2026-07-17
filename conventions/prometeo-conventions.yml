@@ -1,0 +1,44 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://docs.prometeoapi.com; openapi/prometeo-openapi.yml;
+  authentication/prometeo-authentication.yml; errors/prometeo-problem-types.yml
+authentication:
+  style: api-key + session-key
+  api_key: X-API-Key request header (per-account, issued from dashboard.prometeoapi.com)
+  banking_session: >-
+    Banking API establishes a per-end-user session via POST /login/ (MFA answered
+    via /login-procedure/). The returned session `key` is passed as a `key` query
+    parameter on subsequent Banking calls.
+  cross_ref: authentication/prometeo-authentication.yml
+idempotency:
+  supported: partial
+  mechanism: staged-request
+  notes: >-
+    Prometeo does not document a general Idempotency-Key header. Money-movement
+    is made safe with a two-step staged pattern: Banking transfers use
+    /transfer/preprocess (returns a request_id) then /transfer/confirm (which
+    replays that request_id) so a confirm cannot be issued without a prior
+    staged request. Webhook consumers must de-duplicate on events[].event_id.
+pagination:
+  banking_movements:
+    style: date-window
+    params: [account, currency, date_start, date_end]
+    note: Movements are filtered by a date range (dd/mm/yyyy), not a cursor.
+  cross_border_lists:
+    style: unspecified
+    note: List endpoints (payin intents, payouts) return collections; no documented cursor/offset params.
+request_tracing:
+  transfer_request_id: request_id returned by /transfer/preprocess and required by /transfer/confirm
+  webhook_event_id: events[].event_id (idempotency key for webhook delivery)
+versioning:
+  cross_ref: lifecycle/prometeo-lifecycle.yml
+  note: Per-product host + URL path versioning (Cross-Border /v1, Payment /api/v1, Account Validation /api/v2).
+error_envelope:
+  shape: '{ "status": "<string>", "message": "<string>" }'
+  cross_ref: errors/prometeo-problem-types.yml
+rate_limits:
+  cross_ref: rate-limits/prometeo-rate-limits.yml
+  note: Sandbox is unmetered; Trial is rate-limited; Production limits per contract/plan.
+webhooks:
+  cross_ref: asyncapi/prometeo-webhooks.yml

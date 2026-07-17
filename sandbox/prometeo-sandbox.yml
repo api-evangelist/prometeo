@@ -1,0 +1,47 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://docs.prometeoapi.com/docs/ambientes;
+  https://docs.prometeoapi.com/docs/cómo-comenzar-a-utilizar-nuestro-sandbox;
+  openapi/prometeo-openapi.yml
+model:
+  separation: environment-scoped
+  notes: >-
+    Prometeo separates sandbox from production by host, not by key prefix. The
+    same dashboard-issued X-API-Key is used against the sandbox hosts for mock
+    data and the production hosts for real data. The official Python SDK selects
+    the environment with Client(api_key, environment='testing'|'production').
+environments:
+  - name: sandbox
+    data: dummy/sample (mock)
+    real_bank_access: false
+    limits: none
+    hosts:
+      - https://banking.sandbox.prometeoapi.com
+      - https://account-validation.sandbox.prometeoapi.com
+      - https://crossborder-api.sandbox.prometeoapi.com
+      - https://identity.sandbox.prometeoapi.com
+      - https://fiscal.sandbox.prometeoapi.com
+  - name: trial
+    data: real
+    notes: Real data in a controlled, rate- and time-limited pre-production environment.
+  - name: production
+    data: real
+    hosts:
+      - https://banking.prometeoapi.net
+      - https://account-validation.prometeoapi.net
+      - https://crossborder.secure.prometeoapi.net/v1
+      - https://payment.prometeoapi.net
+      - https://identity.prometeoapi.net
+      - https://fiscal.prometeoapi.net
+test_values:
+  - context: Banking login (sandbox)
+    field: provider
+    value: test
+    note: Use provider code "test" against banking.sandbox.prometeoapi.com; returns mock accounts/movements.
+signup: https://prometeoapi.com/accounts/create/
+support: support@prometeoapi.com
+notes: >-
+  Prometeo publishes a mock-data sandbox but does not publish a table of magic
+  test account numbers / cards; the sandbox returns dummy/sample data for any
+  connected "test" provider. No test values were invented here.

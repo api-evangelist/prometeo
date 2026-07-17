@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.prometeoapi.com/docs/embebe-el-widget-en-tu-sitio-web-payments-api
+families:
+  - name: Payments Widget
+    kind: embedded-checkout
+    description: >-
+      Embeddable web widget for collecting account-to-account (open banking)
+      payments from a customer's bank. The merchant first creates a payment
+      intent via the Payment API (payment_intent_create), then initializes the
+      widget with the returned intent so the payer completes the bank
+      authorization inside the hosted interface.
+    init_flow:
+      - Create a payment intent (POST /api/v1/payment-intent/, operationId createPaymentIntent)
+      - Initialize the widget on the merchant site with the intent
+      - Payer authorizes at their bank; status is delivered via webhook
+    intent_parameters:
+      - {name: product_id, required: true, type: string, note: Identifies a product (e.g. a widget).}
+      - {name: product_type, required: false, type: string}
+      - {name: external_id, required: false, type: string, note: Merchant-side user/tracking id (max 50 chars).}
+      - {name: concept, required: false, type: string, note: Reflected as the concept at the payer's bank (max 20 chars).}
+      - {name: currency, required: true, type: string}
+      - {name: amount, required: true, type: string}
+    docs: https://docs.prometeoapi.com/docs/embebe-el-widget-en-tu-sitio-web-payments-api
+notes: >-
+  Distinct from the server-side SDKs in packages/. Also related: a hosted
+  "Link de Pagos" (payment link) API for create/list/get/cancel payment links.

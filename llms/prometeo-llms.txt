@@ -1,0 +1,133 @@
+# PrometeoAPI Documentation
+
+> Documentation for PrometeoAPI
+
+## Guides
+- [Índice](https://docs.prometeoapi.com/docs/te-damos-la-bienvenida-a-prometeo-docs.md): Aquí encontrarás los atajos principales para navegar a través de nuestra documentación
+- [Conceptos básicos](https://docs.prometeoapi.com/docs/conceptos-básicos.md)
+- [Ambientes](https://docs.prometeoapi.com/docs/ambientes.md)
+- [Autenticación de tu usuario](https://docs.prometeoapi.com/docs/autenticación-4.md)
+- [Glosario](https://docs.prometeoapi.com/docs/glosario.md): Aquí están las definiciones de ciertos conceptos que encontrarás durante tu integración
+- [Guía rápida](https://docs.prometeoapi.com/docs/guía-rápida.md)
+- [Crea tu cuenta en Prometeo](https://docs.prometeoapi.com/docs/créate-una-cuenta-en-prometeo-openbanking.md): Ingresa a https://prometeoapi.com y haz click en el botón "Iniciar Sesión"
+- [Explora tu Dashboard](https://docs.prometeoapi.com/docs/explora-tu-panel-de-gestión.md): Toda la información de tu operativa en un solo lugar
+- [Comienza la integración en Sandbox](https://docs.prometeoapi.com/docs/comienza-la-integración-en-sandbox.md)
+- [Cómo comenzar a utilizar nuestro Sandbox](https://docs.prometeoapi.com/docs/cómo-comenzar-a-utilizar-nuestro-sandbox.md)
+- [Solicita acceso a Trial](https://docs.prometeoapi.com/docs/solicita-acceso-a-preproducción.md): Da el siguiente paso: Pasa a Trial con datos reales
+- [¡Lanzamiento en Producción!](https://docs.prometeoapi.com/docs/lanzamiento-en-producción.md)
+- [¿Qué puedo hacer con la API de validación de cuentas?](https://docs.prometeoapi.com/docs/qué-puedo-hacer-con-la-api-de-validación-de-cuentas-bancaria.md)
+- [Cobertura](https://docs.prometeoapi.com/docs/cobertura.md)
+- [Américas](https://docs.prometeoapi.com/docs/américas.md)
+- [Argentina - AV](https://docs.prometeoapi.com/docs/argentina-av.md): Cobertura del 100% de las cuentas bancarias del país.
+- [Brasil - AV](https://docs.prometeoapi.com/docs/brasil-av.md): Cobertura del 100% de las cuentas conectadas vía PIX.
+- [Chile - AV](https://docs.prometeoapi.com/docs/chile-av.md): Cobertura del 100% de las cuentas conectadas vía TEF.
+- [Colombia - AV](https://docs.prometeoapi.com/docs/colombia-av.md): Cobertura del 80% de las cuentas bancarias del país.
+- [Ecuador - AV](https://docs.prometeoapi.com/docs/ecuador-av.md): Cobertura del 95% de las cuentas bancarias del país.
+- [México - AV](https://docs.prometeoapi.com/docs/méxico-av.md): Cobertura del 100% de las cuentas conectadas vía SPEI.
+- [Panamá - AV](https://docs.prometeoapi.com/docs/panamá-av.md): Cobertura del 45% de las cuentas bancarias del país.
+- [Perú - AV](https://docs.prometeoapi.com/docs/perú-av.md): Cobertura del 100% de las cuentas bancarias del país.
+- [Estados Unidos - AV](https://docs.prometeoapi.com/docs/us-av.md): Cobertura del 85% de las cuentas bancarias del país (únicamente cuentas conectadas vía RTP y FedNow).
+- [Uruguay - AV](https://docs.prometeoapi.com/docs/uruguay-av.md): Cobertura del 100% de las cuentas bancarias del país.
+- [Listado de bancos](https://docs.prometeoapi.com/docs/listado-de-proveedores.md): Endpoint: GET /provider/
+- [Introducción](https://docs.prometeoapi.com/docs/introducción.md): Gestioná pagos globales y balances locales desde una única solución, con acceso a funcionalidades bancarias a través de nuestra API y herramientas complementarias.
+- [Guía rápida de integración a API Crossborder](https://docs.prometeoapi.com/docs/guía-rápida-de-integración-a-api-crossborder.md): Te explicamos cómo comenzar a integrar nuestra API Crossborder para gestionar pagos internacionales y locales, acceder a balances en tiempo real y operar con cuentas locales en distintos países.
+- [Webhook de Notificaciones – Borderless API](https://docs.prometeoapi.com/docs/webhook-de-notificación.md): Recibe notificaciones de eventos en Prometeo
+- [Dashboard de movimientos](https://docs.prometeoapi.com/docs/dashboard-de-movimientos-próximamente.md)
+- [México - Receipts](https://docs.prometeoapi.com/docs/mexico.md)
+- [CEP](https://docs.prometeoapi.com/docs/cep-comprobante-electrónico-de-pago.md)
+- [Obtención de CEP](https://docs.prometeoapi.com/docs/obtención-de-cep.md)
+- [Uruguay - Fiscal](https://docs.prometeoapi.com/docs/introducción-2.md)
+- [BCU](https://docs.prometeoapi.com/docs/bcu-api.md)
+- [Reporte de deuda](https://docs.prometeoapi.com/docs/reporte-de-deuda.md)
+- [DIAN](https://docs.prometeoapi.com/docs/dian.md)
+- [México - Identity](https://docs.prometeoapi.com/docs/introducción-5.md)
+- [CURP](https://docs.prometeoapi.com/docs/curp-1.md)
+- [Validación vía CURP](https://docs.prometeoapi.com/docs/consultar-curp.md): Endpoint: POST /query
+- [Validación vía datos personales](https://docs.prometeoapi.com/docs/consultar-datos-personales.md): Endpoint: POST /reverse-query
+- [Brasil - Identity](https://docs.prometeoapi.com/docs/brasil-2.md)
+- [CPF/CNPJ](https://docs.prometeoapi.com/docs/cpfcnpj.md)
+- [Embebe el widget en tu sitio web (Payments API)](https://docs.prometeoapi.com/docs/embebe-el-widget-en-tu-sitio-web-payments-api.md): Te explicamos cómo integrar nuestra interfaz para recibir pagos de tus clientes.
+- [Webhook de notificación](https://docs.prometeoapi.com/docs/webhook-de-notificacion.md): Recibe notificaciones de eventos en Prometeo
+- [Link de Pagos API](https://docs.prometeoapi.com/docs/link-de-pagos-api.md): Te explicamos cómo utilizar nuestra API para crear, listar, obtener y cancelar links de pago.
+
+## API Reference
+- [Validate Account](https://docs.prometeoapi.com/reference/validate_account_api_v2_validate_account_post.md)
+- [Retrieve Validation Result](https://docs.prometeoapi.com/reference/retrieve_validation_result_api_v2_validate_account__request_id__get.md)
+- [Retorna detalles de la cuenta consultada.](https://docs.prometeoapi.com/reference/post_validate-account-1.md): Valida que una cuenta sea valida y retorna información asociada a su dueño.
+- [Confirma el titular de la cuenta consultada.](https://docs.prometeoapi.com/reference/post_account-ownership.md): Valida el nombre del titular de una cuenta.
+- [Login](https://docs.prometeoapi.com/reference/login.md): Iniciar sesión con una institucion financiera
+- [Logout](https://docs.prometeoapi.com/reference/logout.md): Cierra la sesión actual, luego de esto la clave de sesión dejará de ser válida.
+- [Clientes](https://docs.prometeoapi.com/reference/getclients.md): Los clientes son cuentas asociadas a un usuario, un usuario puede tener más de una cuenta asociada a su usuario. Sucede mucho en el caso de cuentas con 2 dueños.
+- [Seleccionar cliente](https://docs.prometeoapi.com/reference/selectclient.md): Selecciona el cliente a usar en la sesión
+- [Login Procedure](https://docs.prometeoapi.com/reference/login-procedure.md): Enviar preguntas de seguridad
+- [Información del titular](https://docs.prometeoapi.com/reference/getpersonalinfo.md): Obtiene información del titular de la cuenta bancaria que inició sesión
+- [Cuentas](https://docs.prometeoapi.com/reference/getaccounts.md): Obtener las cuentas del usuario
+- [Listar movimientos](https://docs.prometeoapi.com/reference/getmovements.md): Obtiene todos los movimientos de una cuenta en un rango de fechas
+- [Detalle de movimiento (EXCLUSIVO SCOTIA EMPRESAS PERÚ)](https://docs.prometeoapi.com/reference/getmovementdetail.md): Retorna informacion extra sobre un movimiento **ESTE ES UN ENDPOINT EXCLUSIVO PARA SCOTIA EMPRESAS PERÚ**
+- [Listar tarjetas de crédito](https://docs.prometeoapi.com/reference/getcreditcards.md): Lista todas las tarjetas de crédito del usuario
+- [Listar movimientos de una tarjeta](https://docs.prometeoapi.com/reference/getcreditcardmovements.md): Lista todos los movimientos de una tarjeta de crédito para un rango de fechas
+- [Verifica el estado de la tarea](https://docs.prometeoapi.com/reference/gettaskresult.md): Verifica el estado de la tarea, si esta completada retorna el resultado de la misma. (Solo aplica al proveedor Bancolombia Empresas de Colombia)
+- [Campos requeridos para preinscribir una cuenta](https://docs.prometeoapi.com/reference/gettransferenrollform.md): Listar los campos requeridos para preinscribir una cuenta para transferencias
+- [Preinscribir cuenta para transferencias (requerido solo en algúnos providers)](https://docs.prometeoapi.com/reference/transferaccountenroll.md): Preinscribe una cuenta para poder realizar transferencias <br /> Los parámetros opcionales serán necesarios según cada provider
+- [Confirma la preinscripción cuando requiere autorización posterior](https://docs.prometeoapi.com/reference/transferaccountenrollconfirm.md): Utiliza autenticación de múltiples factores para confirmar la preinscripción (por ej. SMS, EMAIL)
+- [Remover cuenta preinscrita](https://docs.prometeoapi.com/reference/transferaccountenrollremove.md): Remueve una cuenta preinscrita con anterioridad (solo disponible para los proveedores Banorte Corporativo Mexico y Davivienda Corporativo Colombia)
+- [Listar instituciones para transferencias](https://docs.prometeoapi.com/reference/gettransferdestinations.md): Lista las instituciones financieras hacia donde se pueden realizar transferencias
+- [Campos requeridos para realizar una transferencia](https://docs.prometeoapi.com/reference/gettransferformfields.md): Listar los campos requeridos para realizar transferencias hacia una cuenta (aplica solo al proveedor Banco de Bogotá Corporativo de Colombia)
+- [Métodos de autenticación requeridos para realizar una transferencias](https://docs.prometeoapi.com/reference/gettransfermfa.md): Listar los tipos de autenticación requeridos para realizar transferencias hacia una cuenta (por ahora solo para `santander_pers_uy`)
+- [Preprocesar transferencia](https://docs.prometeoapi.com/reference/transferpreprocess.md): Aprueba y valida los datos necesarios para realizar la transferencia
+- [Reintento de preprocesar la transferencia](https://docs.prometeoapi.com/reference/retrytransferpreprocess.md): Reintento de la transferencia con los mismos datos suministrados (por ahora solo para `santander_pers_uy`)
+- [Confirmar transferencia](https://docs.prometeoapi.com/reference/transferconfirm.md): Confirma una transferencia ya preprocesada
+- [Obtener detalles de la transferencia](https://docs.prometeoapi.com/reference/transferdetail.md): Devuelve el estado y los detalles de la transferencia (solo aplica al proveedor Bancolombia Corporativo Colombia)
+- [Obtener listado de transferencias realizadas](https://docs.prometeoapi.com/reference/gettransferlog.md): Devuelve un listado de las transferencias realizadas a través de la API en un periodo de tiempo especificado. Incluye transferencias de todos los providers utilizados.
+- [Detalle de transferencia](https://docs.prometeoapi.com/reference/gettransferlogdetail.md): Devuelve el detalle de una transferencia dado su request_id
+- [Comprobar que la cuenta sea válida](https://docs.prometeoapi.com/reference/validateaccount.md): Comprueba que la cuenta sea válida (solo aplica a los proveedores Banco República de Uruguay y de Perú BBVA Netcash, Telebanking Corporativo e Interbank Corportativo)
+- [Preprocesar lote de transferencias](https://docs.prometeoapi.com/reference/preprocessbatchtransfer.md): Aprueba y valida los datos necesarios para realizar las transferencias de un lote (solo disponible para el proveedor Telecrédito - BCP de Perú)
+- [Confirmar un lote transferencia](https://docs.prometeoapi.com/reference/confirmbatchtransfer.md): Confirma un lote de transferencias ya preprocesadas (solo disponible para el proveedor Telecrédito - BCP de Perú)
+- [Obtener los detalles de un lote de transferencias](https://docs.prometeoapi.com/reference/detailbatchtransfer.md): Devuelve el estado y los detalles de la transferencia (solo disponible para el proveedor Telecrédito - BCP de Perú)
+- [Listar proveedores](https://docs.prometeoapi.com/reference/getproviders.md): Lista todos los proveedores de datos disponibles en Prometeo
+- [Detalle de proveedor](https://docs.prometeoapi.com/reference/getproviderdetail.md): Detalles adicionales sobre el proveedor
+- [Lista las sucursales del proveedor](https://docs.prometeoapi.com/reference/getproviderbranches.md): Lista las sucursales del proveedor dentro de una zona postal (solo aplica al proveedor BBVA Mexico)
+- [Lista los cajeros del proveedor](https://docs.prometeoapi.com/reference/getprovideratms.md): Lista los cajeros del proveedor dentro de una zona postal (solo aplica al proveedor BBVA Mexico)
+- [Create payment intent](https://docs.prometeoapi.com/reference/createpaymentintent.md)
+- [List payment intents](https://docs.prometeoapi.com/reference/listpaymentintents.md)
+- [Get payment intent detail](https://docs.prometeoapi.com/reference/getpaymentintent.md)
+- [Create a refund](https://docs.prometeoapi.com/reference/createrefund.md)
+- [Create individual payout](https://docs.prometeoapi.com/reference/createpayout.md)
+- [List payout](https://docs.prometeoapi.com/reference/listpayout.md)
+- [Get payout detail](https://docs.prometeoapi.com/reference/getpayout.md)
+- [Create customer](https://docs.prometeoapi.com/reference/createcustomer.md)
+- [List the customers](https://docs.prometeoapi.com/reference/listbeneficiaries.md)
+- [Get Customer Detail](https://docs.prometeoapi.com/reference/getcustomerdetail.md)
+- [Update customer](https://docs.prometeoapi.com/reference/updatecustomer.md)
+- [Add Withdrawal account for customer](https://docs.prometeoapi.com/reference/addwithdrawalaccountcustomer.md)
+- [Update Withdrawal account for customer](https://docs.prometeoapi.com/reference/updatewithdrawalaccountcustomer.md)
+- [Select Withdrawal account for customer](https://docs.prometeoapi.com/reference/selectwithdrawalaccountcustomer.md)
+- [Get account details](https://docs.prometeoapi.com/reference/accountdetails.md)
+- [List account](https://docs.prometeoapi.com/reference/listaccount.md)
+- [List account transactions](https://docs.prometeoapi.com/reference/listtransactions.md)
+- [Transfer funds between own accounts](https://docs.prometeoapi.com/reference/transferfunds.md)
+- [Get fx quote](https://docs.prometeoapi.com/reference/getfxquote.md)
+- [Create an exchange quote with a currency pair](https://docs.prometeoapi.com/reference/exchangecurrencyfx.md)
+- [Send event webhook](https://docs.prometeoapi.com/reference/sendwebhookevent.md)
+- [Create payment intent](https://docs.prometeoapi.com/reference/payment_intent_create.md): Create payment intent
+- [Get payment intent](https://docs.prometeoapi.com/reference/payment_intent_retrieve.md)
+- [Create a payment link](https://docs.prometeoapi.com/reference/payment_link_create.md): Create a payment link
+- [Retrieve payment link details](https://docs.prometeoapi.com/reference/payment_link_retrieve.md): Retrieve payment link details
+- [Cancel a list of payment links](https://docs.prometeoapi.com/reference/payment_link_cancel_create.md): Cancel a list of payment links
+- [Download payment links as CSV](https://docs.prometeoapi.com/reference/payment_link_download_create.md): Download payment links as CSV
+- [List payment links by widget ID](https://docs.prometeoapi.com/reference/payment_link_list_create.md): List payment links by widget ID
+- [Query CEP](https://docs.prometeoapi.com/reference/post_cep.md): Queries a CEP (Comprobante Electronico de Pago) issued by Banxico for a given transfer.
+- [Download CEP ZIP file](https://docs.prometeoapi.com/reference/get_cep-cep-zip.md): Downloads the ZIP file for the specified CEP.
+- [Reporte de deuda](https://docs.prometeoapi.com/reference/post_report.md): Consulta la Central de Riesgos Crediticios y genera un reporte con la calificación crediticia.
+- [Login](https://docs.prometeoapi.com/reference/post_login.md): El login puede demorar hasta 20s en generar una respuesta. Depende de la carga que tenga la página de la Hacienda, el tiempo que puede demorar en devolver una respuesta.
+- [Información de la empresa](https://docs.prometeoapi.com/reference/get_company-info.md)
+- [Balances](https://docs.prometeoapi.com/reference/get_balances.md): Corresponde al detalle de las obligaciones al día o en mora de la entidad.
+- [Numeracion de facturación](https://docs.prometeoapi.com/reference/get_numeration.md)
+- [Formularios 110 y 210](https://docs.prometeoapi.com/reference/get_rent.md): Declaración de renta
+- [Formulario 300](https://docs.prometeoapi.com/reference/get_vat.md): Declaración de impuestos sobre las ventas - IVA
+- [Retenciones en la Fuente](https://docs.prometeoapi.com/reference/get_retentions.md)
+- [Consulta por CURP](https://docs.prometeoapi.com/reference/post_curp-query.md)
+- [Consulta por datos personales](https://docs.prometeoapi.com/reference/post_curp-reverse-query.md)
+- [CNPJ - documentos](https://docs.prometeoapi.com/reference/post_cnpj.md): Búsqueda de información por número de documento / nombre de empresa, con límite 10.
+- [CPF - documentos](https://docs.prometeoapi.com/reference/post_cpf.md): Búsqueda de información por número de documento / nombre completo, con límite 10.
+- [Consulta por documento](https://docs.prometeoapi.com/reference/post_rues-lookup.md)

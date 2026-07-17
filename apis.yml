@@ -165,6 +165,56 @@ common:
   url: finops/prometeo-finops.yml
 - url: https://prometeoapi.com/en/blog
   type: Blog
+- type: Packages
+  url: packages/prometeo-packages.yml
+- type: SDKs
+  url: packages/prometeo-packages.yml
+- type: MCPServer
+  url: mcp/prometeo-mcp.yml
+- type: LLMsTxt
+  url: llms/prometeo-llms.txt
+- type: Overlay
+  url: overlays/prometeo-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/prometeo-conformance.yml
+- type: Compliance
+  url: security/prometeo-trust-center.yml
+- type: ErrorCatalog
+  url: errors/prometeo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/prometeo-lifecycle.yml
+- type: Sandbox
+  url: sandbox/prometeo-sandbox.yml
+- type: Conventions
+  url: conventions/prometeo-conventions.yml
+- type: Components
+  url: components/prometeo-components.yml
+- type: DataModel
+  url: data-model/prometeo-data-model.yml
+- type: Webhooks
+  url: asyncapi/prometeo-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Security
+  url: security/prometeo-vulnerability-disclosure.yml
+- type: DeveloperPortal
+  url: https://docs.prometeoapi.com
+- type: APIReference
+  url: https://docs.prometeoapi.com/reference
+- type: GettingStarted
+  url: https://docs.prometeoapi.com/docs/gu%C3%ADa-r%C3%A1pida
+- type: Support
+  url: mailto:support@prometeoapi.com
+- type: Pricing
+  url: https://prometeoapi.com/en/pricing
+- type: SignUp
+  url: https://prometeoapi.com/accounts/create/
+- type: TermsOfService
+  url: https://prometeoapi.com/en/legal/msa
+- type: PrivacyPolicy
+  url: https://prometeoapi.com/en/legal/privacy-policy
+- type: Postman
+  url: collections/prometeo.postman_collection.json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

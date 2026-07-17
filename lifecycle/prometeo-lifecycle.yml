@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/prometeo-openapi.yml; https://docs.prometeoapi.com
+versioning:
+  scheme: uri-path-and-host
+  notes: >-
+    Each Prometeo product runs on its own host; versioning is expressed in the
+    URL path per product. Account Validation uses /api/v2/*, the Payment API
+    uses /api/v1/*, and Cross-Border is served under /v1 on
+    crossborder.secure.prometeoapi.net. Banking endpoints are unversioned paths.
+  observed:
+    - {product: Cross-Border, version: v1, base: https://crossborder.secure.prometeoapi.net/v1}
+    - {product: Payment, version: v1, base: https://payment.prometeoapi.net/api/v1}
+    - {product: Account Validation, version: v2, base: https://account-validation.prometeoapi.net}
+environments:
+  - {name: sandbox, host_pattern: '*.sandbox.prometeoapi.com', data: dummy/sample}
+  - {name: trial, notes: real data, rate + time limited}
+  - {name: production, host_pattern: '*.prometeoapi.net', data: real}
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found at review time.
+sla:
+  url: null
+  uptime_target: null
+  notes: Production advertises "alta disponibilidad" (high availability); no published numeric SLA found.
+status_page: null
+deprecated_operations: []

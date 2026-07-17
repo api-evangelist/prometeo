@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/prometeo-openapi.yml; https://docs.prometeoapi.com/reference
+format: custom-json
+envelope:
+  media_type: application/json
+  shape: '{ "status": "<string>", "message": "<string>" }'
+  notes: >-
+    Prometeo does not use RFC 9457 application/problem+json. Errors are returned
+    as a JSON object with a `status` string and a human-readable `message`.
+    Banking session operations additionally signal outcome through the login
+    `status` enum rather than an HTTP error.
+status_enum:
+  - value: logged_in
+    meaning: Banking session established successfully.
+  - value: interaction_required
+    meaning: Provider requires an interactive challenge (MFA); answer via /login-procedure/.
+  - value: wrong_credentials
+    meaning: End-user bank credentials were rejected by the provider.
+  - value: error
+    meaning: A processing error occurred establishing or using the session.
+problems:
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid API key (X-API-Key) or banking session key.
+    schema: Error
+    source_operation: openapi/prometeo-openapi.yml#login
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid API key / session key on account listing.
+    schema: Error
+    source_operation: openapi/prometeo-openapi.yml#listAccounts
+notes: >-
+  Derived from the OpenAPI 401 responses and the LoginResponse.status enum.
+  Prometeo's per-endpoint reference (docs.prometeoapi.com/reference) documents
+  additional 4xx conditions per product that were not enumerated in a single
+  error-code registry at review time.

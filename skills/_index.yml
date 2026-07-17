@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/prometeo-openapi.yml; conventions/prometeo-conventions.yml
+skills:
+  - file: prometeo-verify-bank-account.md
+    name: Verify a bank account before paying it
+    api: openapi/prometeo-openapi.yml
+    operations: [validateAccount]
+  - file: prometeo-banking-session-and-movements.md
+    name: Open a banking session and read accounts and movements
+    api: openapi/prometeo-openapi.yml
+    operations: [login, loginProcedure, listAccounts, listMovements, logout]
+  - file: prometeo-banking-transfer.md
+    name: Stage and confirm an account-to-account transfer
+    api: openapi/prometeo-openapi.yml
+    operations: [login, listTransferDestinations, preprocessTransfer, confirmTransfer]
+  - file: prometeo-crossborder-payout.md
+    name: Create a cross-border pay-in and pay out over local rails
+    api: openapi/prometeo-openapi.yml
+    operations: [createPayinIntent, getPayinIntent, exchangeFx, createPayout, getPayout]
+  - file: prometeo-curp-identity.md
+    name: Look up Mexican CURP identity data
+    api: openapi/prometeo-openapi.yml
+    operations: [curpQuery, curpReverseQuery]

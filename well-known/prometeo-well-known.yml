@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: searched
+source: probe of /.well-known/* across Prometeo hosts
+summary: >-
+  No first-party /.well-known/ discovery documents were found. prometeoapi.com
+  returns HTTP 200 for every /.well-known/* path but the body is the marketing
+  SPA shell (soft-404, not a valid document), so nothing was saved verbatim.
+  The API hosts require auth (401) or are unreachable to anonymous probes.
+  Absence of a well-known surface is recorded, not fabricated.
+hosts:
+  - host: https://prometeoapi.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: SPA soft-404 (HTML), file: null}
+      - {path: /.well-known/openid-configuration, status: 200, note: SPA soft-404 (HTML), file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, note: SPA soft-404 (HTML), file: null}
+      - {path: /.well-known/api-catalog, status: 200, note: SPA soft-404 (HTML), file: null}
+      - {path: /.well-known/ai-plugin.json, status: 200, note: SPA soft-404 (HTML), file: null}
+  - host: https://banking.prometeoapi.net
+    documents:
+      - {path: /.well-known/security.txt, status: 401, file: null}
+      - {path: /.well-known/openid-configuration, status: 401, file: null}
+  - host: https://payment.prometeoapi.net
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+  - host: https://crossborder.secure.prometeoapi.net
+    documents:
+      - {path: /.well-known/security.txt, status: 0, note: connection refused to anonymous probe, file: null}

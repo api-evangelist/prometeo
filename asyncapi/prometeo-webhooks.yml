@@ -1,0 +1,59 @@
+generated: '2026-07-17'
+method: searched
+spec_type: Webhooks
+source: >-
+  https://docs.prometeoapi.com/docs/webhook-de-notificación;
+  https://docs.prometeoapi.com/docs/webhook-de-notificacion;
+  https://docs.prometeoapi.com/reference/sendwebhookevent
+summary: >-
+  Prometeo delivers real-time event notifications for Borderless (Cross-Border)
+  and Payments transactions to a merchant-supplied HTTPS endpoint via HTTP POST.
+transport:
+  method: POST
+  content_type: application/json
+  endpoint: merchant-supplied HTTPS URL (configured by Prometeo on request)
+  response_expected: HTTP 2XX (ideally 200) within 5 seconds
+delivery:
+  retry: >-
+    Non-2XX responses or responses slower than 5 seconds are retried after a
+    delay; consumers must de-duplicate using events[].event_id.
+  source_ips:
+    - 107.23.220.24
+    - 23.22.34.57
+    - 3.83.0.169
+authenticity:
+  mechanism: verify_token
+  notes: >-
+    Prometeo issues a verify_token when configuring the endpoint; each
+    notification includes it and the consumer must validate it before
+    processing.
+envelope:
+  fields:
+    verify_token: Verification token issued by Prometeo.
+    events: List of events in the notification.
+    events[].event_type: The event type.
+    events[].event_id: Unique event id (dedup key).
+    events[].timestamp: Event creation timestamp.
+    events[].payload: Event-specific data object.
+  example: |
+    {
+      "verify_token": "TOKEN_GENERADO",
+      "events": [
+        {
+          "event_type": "payin.settled",
+          "event_id": "UUID-EVENTO",
+          "timestamp": "2025-07-29T14:44:43.786177",
+          "payload": {}
+        }
+      ]
+    }
+events:
+  - event_type: payin.settled
+    surface: Borderless / Cross-Border
+    description: A cross-border pay-in was settled.
+    note: Confirmed example from the docs; Prometeo emits additional status-change event types across pay-in / payout / payment-intent lifecycles.
+notes: >-
+  No first-party AsyncAPI document is published; this captures the documented
+  webhook contract. Only the payin.settled event_type is confirmed verbatim in
+  the docs - other event types exist but were not fully enumerated, so they are
+  not invented here.
