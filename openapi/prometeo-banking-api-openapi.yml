@@ -1,0 +1,460 @@
+openapi: 3.0.3
+info:
+  title: Prometeo Account Validation Banking API
+  description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.
+  termsOfService: https://prometeoapi.com/en/legal/msa
+  contact:
+    name: Prometeo Support
+    url: https://docs.prometeoapi.com
+    email: sales@prometeoapi.com
+  version: '1.0'
+servers:
+- url: https://banking.prometeoapi.net
+  description: Banking API - production
+- url: https://banking.sandbox.prometeoapi.com
+  description: Banking API - sandbox (mock data)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Banking
+  description: Bank account access, movements, transfers, credit cards, providers.
+paths:
+  /login/:
+    post:
+      operationId: login
+      tags:
+      - Banking
+      summary: Authenticate against a banking provider
+      description: Starts a banking session against a provider using the end user's credentials. Returns a session `key` used on subsequent Banking calls. May return an interactive-login challenge (MFA) to be answered via /login-procedure/.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Session established or interactive challenge required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /login-procedure/:
+    post:
+      operationId: loginProcedure
+      tags:
+      - Banking
+      summary: Answer an interactive login (MFA) challenge
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                answer:
+                  type: string
+              required:
+              - key
+      responses:
+        '200':
+          description: Challenge answered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+  /info/:
+    get:
+      operationId: getClientInfo
+      tags:
+      - Banking
+      summary: Get logged-in user / session preferences
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Session info.
+          content:
+            application/json:
+              schema:
+                type: object
+  /client/:
+    get:
+      operationId: listClients
+      tags:
+      - Banking
+      summary: List clients available on the session
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Clients list.
+          content:
+            application/json:
+              schema:
+                type: object
+  /client/{client_id}/:
+    get:
+      operationId: selectClient
+      tags:
+      - Banking
+      summary: Select a client for the session
+      parameters:
+      - name: client_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Client selected.
+          content:
+            application/json:
+              schema:
+                type: object
+  /account/:
+    get:
+      operationId: listAccounts
+      tags:
+      - Banking
+      summary: List accounts for the authenticated session
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /movement/:
+    get:
+      operationId: listMovements
+      tags:
+      - Banking
+      summary: List movements (transactions) for an account
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+          example: USD
+      - name: date_start
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 01/07/2026
+      - name: date_end
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 17/07/2026
+      responses:
+        '200':
+          description: Movements.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovementsResponse'
+  /credit-card/:
+    get:
+      operationId: listCreditCards
+      tags:
+      - Banking
+      summary: List credit cards for the session
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Credit cards.
+          content:
+            application/json:
+              schema:
+                type: object
+  /credit-card/{card_number}/movements:
+    get:
+      operationId: listCreditCardMovements
+      tags:
+      - Banking
+      summary: List movements for a credit card
+      parameters:
+      - name: card_number
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/SessionKey'
+      - name: currency
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Credit card movements.
+          content:
+            application/json:
+              schema:
+                type: object
+  /provider/:
+    get:
+      operationId: listProviders
+      tags:
+      - Banking
+      summary: List available banking providers
+      responses:
+        '200':
+          description: Providers.
+          content:
+            application/json:
+              schema:
+                type: object
+  /provider/{provider_code}/:
+    get:
+      operationId: getProviderDetail
+      tags:
+      - Banking
+      summary: Get detail / required login fields for a provider
+      parameters:
+      - name: provider_code
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Provider detail.
+          content:
+            application/json:
+              schema:
+                type: object
+  /transfer/destinations:
+    get:
+      operationId: listTransferDestinations
+      tags:
+      - Banking
+      summary: List enrolled transfer destination accounts
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Destinations.
+          content:
+            application/json:
+              schema:
+                type: object
+  /transfer/preprocess:
+    post:
+      operationId: preprocessTransfer
+      tags:
+      - Banking
+      summary: Pre-process (stage) an account-to-account transfer
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransferPreprocessRequest'
+      responses:
+        '200':
+          description: Transfer staged; may require MFA before confirm.
+          content:
+            application/json:
+              schema:
+                type: object
+  /transfer/confirm:
+    post:
+      operationId: confirmTransfer
+      tags:
+      - Banking
+      summary: Confirm a previously staged transfer (moves money)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                request_id:
+                  type: string
+                authorization_type:
+                  type: string
+                authorization_data:
+                  type: string
+              required:
+              - key
+              - request_id
+      responses:
+        '200':
+          description: Transfer confirmed.
+          content:
+            application/json:
+              schema:
+                type: object
+  /logout/:
+    get:
+      operationId: logout
+      tags:
+      - Banking
+      summary: End the banking session
+      parameters:
+      - $ref: '#/components/parameters/SessionKey'
+      responses:
+        '200':
+          description: Session ended.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    SessionKey:
+      name: key
+      in: query
+      required: true
+      description: Banking session key returned by /login/.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    MovementsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        movements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movement'
+    LoginRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Provider code (from /provider/). Use "test" in sandbox.
+          example: test
+        username:
+          type: string
+        password:
+          type: string
+        type:
+          type: string
+          description: Optional document/login type required by some providers.
+      required:
+      - provider
+      - username
+      - password
+    Movement:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        date:
+          type: string
+        detail:
+          type: string
+        debit:
+          type: number
+        credit:
+          type: number
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        number:
+          type: string
+        branch:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
+    TransferPreprocessRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        origin_account:
+          type: string
+        destination_institution:
+          type: string
+        destination_account:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: number
+        concept:
+          type: string
+      required:
+      - key
+      - origin_account
+      - destination_account
+      - amount
+      - currency
+    AccountsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - logged_in
+          - interaction_required
+          - wrong_credentials
+          - error
+        key:
+          type: string
+        context:
+          type: string
+        field:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key / session key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: All Prometeo products authenticate with a per-account API key sent in the X-API-Key request header. Keys are issued from dashboard.prometeoapi.com; the sandbox key is available immediately on first login.

@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Prometeo Account Validation Cross-Border API
+  description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.
+  termsOfService: https://prometeoapi.com/en/legal/msa
+  contact:
+    name: Prometeo Support
+    url: https://docs.prometeoapi.com
+    email: sales@prometeoapi.com
+  version: '1.0'
+servers:
+- url: https://banking.prometeoapi.net
+  description: Banking API - production
+- url: https://banking.sandbox.prometeoapi.com
+  description: Banking API - sandbox (mock data)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Cross-Border
+  description: Pay-in intents, payouts over local rails, and FX exchange.
+paths:
+  /payin/intent:
+    post:
+      operationId: createPayinIntent
+      tags:
+      - Cross-Border
+      summary: Create a cross-border pay-in intent (virtual account / QR)
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+        description: Cross-Border API - production
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+        description: Cross-Border API - sandbox
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Pay-in intent created.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: listPayinIntents
+      tags:
+      - Cross-Border
+      summary: List cross-border pay-in intents
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      responses:
+        '200':
+          description: Intents.
+          content:
+            application/json:
+              schema:
+                type: object
+  /payin/intent/{intent_id}:
+    get:
+      operationId: getPayinIntent
+      tags:
+      - Cross-Border
+      summary: Get a cross-border pay-in intent
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      parameters:
+      - name: intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Intent.
+          content:
+            application/json:
+              schema:
+                type: object
+  /payin/refund:
+    post:
+      operationId: refundPayin
+      tags:
+      - Cross-Border
+      summary: Refund a settled cross-border pay-in
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                type: object
+  /payout/transfer:
+    post:
+      operationId: createPayout
+      tags:
+      - Cross-Border
+      summary: Execute a cross-border payout over local rails (moves money)
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Payout created.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: listPayouts
+      tags:
+      - Cross-Border
+      summary: List cross-border payouts
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      responses:
+        '200':
+          description: Payouts.
+          content:
+            application/json:
+              schema:
+                type: object
+  /payout/transfer/{payout_id}:
+    get:
+      operationId: getPayout
+      tags:
+      - Cross-Border
+      summary: Get a cross-border payout
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      parameters:
+      - name: payout_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payout.
+          content:
+            application/json:
+              schema:
+                type: object
+  /fx/exchange:
+    post:
+      operationId: exchangeFx
+      tags:
+      - Cross-Border
+      summary: Execute an FX exchange for a cross-border flow
+      servers:
+      - url: https://crossborder.secure.prometeoapi.net/v1
+      - url: https://crossborder-api.sandbox.prometeoapi.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: FX exchange executed.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: All Prometeo products authenticate with a per-account API key sent in the X-API-Key request header. Keys are issued from dashboard.prometeoapi.com; the sandbox key is available immediately on first login.

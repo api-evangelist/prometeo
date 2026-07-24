@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: Prometeo Account Validation Payment API
+  description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.
+  termsOfService: https://prometeoapi.com/en/legal/msa
+  contact:
+    name: Prometeo Support
+    url: https://docs.prometeoapi.com
+    email: sales@prometeoapi.com
+  version: '1.0'
+servers:
+- url: https://banking.prometeoapi.net
+  description: Banking API - production
+- url: https://banking.sandbox.prometeoapi.com
+  description: Banking API - sandbox (mock data)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Payment
+  description: Account-to-account (open banking initiated) payment intents.
+paths:
+  /api/v1/payment-intent/:
+    post:
+      operationId: createPaymentIntent
+      tags:
+      - Payment
+      summary: Create an account-to-account payment intent
+      servers:
+      - url: https://payment.prometeoapi.net
+        description: Payment API - production
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Payment intent created.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/payment-intent/{intent_id}:
+    get:
+      operationId: getPaymentIntent
+      tags:
+      - Payment
+      summary: Get an account-to-account payment intent
+      servers:
+      - url: https://payment.prometeoapi.net
+      parameters:
+      - name: intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment intent.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: All Prometeo products authenticate with a per-account API key sent in the X-API-Key request header. Keys are issued from dashboard.prometeoapi.com; the sandbox key is available immediately on first login.
