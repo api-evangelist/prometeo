@@ -1,0 +1,935 @@
+{
+  "info": {
+    "_postman_id": "6aaf8085-9903-4f3b-88ae-f559a503aec9",
+    "name": "Prometeo Account Validation Cross-Border API",
+    "description": "Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.\n\nContact Support:\n Name: Prometeo Support\n Email: sales@prometeoapi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:41:10.000Z",
+    "updatedAt": "2026-07-28T02:41:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6aaf8085-9903-4f3b-88ae-f559a503aec9"
+  },
+  "item": [
+    {
+      "name": "payin",
+      "item": [
+        {
+          "name": "intent",
+          "item": [
+            {
+              "name": "{intent_id}",
+              "item": [
+                {
+                  "name": "Get a cross-border pay-in intent",
+                  "id": "73df0e39-6f94-4d84-95fe-0a190279d194",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent/:intent_id",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payin",
+                        "intent",
+                        ":intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dc797f1c-73e6-4990-8649-a1a830a1309e",
+                          "key": "intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c350662e-d02b-4252-b6ad-6a9b8c45b7be",
+                      "name": "Intent.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent/:intent_id",
+                          "protocol": "https",
+                          "host": [
+                            "crossborder",
+                            "secure",
+                            "prometeoapi",
+                            "net"
+                          ],
+                          "path": [
+                            "v1",
+                            "payin",
+                            "intent",
+                            ":intent_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:41:11.000Z",
+                      "updatedAt": "2026-07-28T02:41:11.000Z",
+                      "uid": "35240-c350662e-d02b-4252-b6ad-6a9b8c45b7be"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-73df0e39-6f94-4d84-95fe-0a190279d194"
+                }
+              ],
+              "id": "6cca4910-bc3d-47fc-85b5-bb4c7c8bb96f",
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-6cca4910-bc3d-47fc-85b5-bb4c7c8bb96f"
+            },
+            {
+              "name": "Create a cross-border pay-in intent (virtual account / QR)",
+              "id": "948cbf74-7eed-469d-b49a-bbf44f6f1064",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "payin",
+                    "intent"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f6fc9ecf-34b2-4942-9394-9271f1c79e2b",
+                  "name": "Pay-in intent created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payin",
+                        "intent"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-f6fc9ecf-34b2-4942-9394-9271f1c79e2b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-948cbf74-7eed-469d-b49a-bbf44f6f1064"
+            },
+            {
+              "name": "List cross-border pay-in intents",
+              "id": "bb5bab2d-787b-45ee-a805-4c35dce567fa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "payin",
+                    "intent"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7770a27c-44aa-4216-9801-96f3d316fa17",
+                  "name": "Intents.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/intent",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payin",
+                        "intent"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-7770a27c-44aa-4216-9801-96f3d316fa17"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-bb5bab2d-787b-45ee-a805-4c35dce567fa"
+            }
+          ],
+          "id": "67979d38-907a-4f0d-aed6-799652da1408",
+          "createdAt": "2026-07-28T02:41:11.000Z",
+          "updatedAt": "2026-07-28T02:41:11.000Z",
+          "uid": "35240-67979d38-907a-4f0d-aed6-799652da1408"
+        },
+        {
+          "name": "refund",
+          "item": [
+            {
+              "name": "Refund a settled cross-border pay-in",
+              "id": "17c57fa0-1ee6-438e-99e3-378a3c4316b4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/refund",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "payin",
+                    "refund"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9b21dd4c-71c9-400a-9d3d-b9433f4e2d40",
+                  "name": "Refund created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payin/refund",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payin",
+                        "refund"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-9b21dd4c-71c9-400a-9d3d-b9433f4e2d40"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-17c57fa0-1ee6-438e-99e3-378a3c4316b4"
+            }
+          ],
+          "id": "074239cc-1725-47b8-b724-7f9abcc37be1",
+          "createdAt": "2026-07-28T02:41:11.000Z",
+          "updatedAt": "2026-07-28T02:41:11.000Z",
+          "uid": "35240-074239cc-1725-47b8-b724-7f9abcc37be1"
+        }
+      ],
+      "id": "4e2c1126-a004-4255-941c-17bcd5d90c44",
+      "createdAt": "2026-07-28T02:41:11.000Z",
+      "updatedAt": "2026-07-28T02:41:11.000Z",
+      "uid": "35240-4e2c1126-a004-4255-941c-17bcd5d90c44"
+    },
+    {
+      "name": "payout",
+      "item": [
+        {
+          "name": "transfer",
+          "item": [
+            {
+              "name": "{payout_id}",
+              "item": [
+                {
+                  "name": "Get a cross-border payout",
+                  "id": "c9a0a1ed-60d1-4e4b-b60d-6a10b8c293ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer/:payout_id",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payout",
+                        "transfer",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d7e4f999-7154-4628-89f3-5973d81082e9",
+                          "key": "payout_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1339986e-091f-43a3-821b-bbb73b448728",
+                      "name": "Payout.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer/:payout_id",
+                          "protocol": "https",
+                          "host": [
+                            "crossborder",
+                            "secure",
+                            "prometeoapi",
+                            "net"
+                          ],
+                          "path": [
+                            "v1",
+                            "payout",
+                            "transfer",
+                            ":payout_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "payout_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:41:11.000Z",
+                      "updatedAt": "2026-07-28T02:41:11.000Z",
+                      "uid": "35240-1339986e-091f-43a3-821b-bbb73b448728"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-c9a0a1ed-60d1-4e4b-b60d-6a10b8c293ff"
+                }
+              ],
+              "id": "2e5aaf76-2df8-426c-ac5a-47da995aa4fb",
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-2e5aaf76-2df8-426c-ac5a-47da995aa4fb"
+            },
+            {
+              "name": "Execute a cross-border payout over local rails (moves money)",
+              "id": "10f9afd5-f9dd-419d-8329-f4a291abb27e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "payout",
+                    "transfer"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8b100de0-fdb8-416f-91db-7b738a8b86f3",
+                  "name": "Payout created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payout",
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-8b100de0-fdb8-416f-91db-7b738a8b86f3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-10f9afd5-f9dd-419d-8329-f4a291abb27e"
+            },
+            {
+              "name": "List cross-border payouts",
+              "id": "572489d2-b567-4387-bd48-819c82ddbaca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "payout",
+                    "transfer"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "683fa98a-09ab-4079-9fe4-de94721b3abd",
+                  "name": "Payouts.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/payout/transfer",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "payout",
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-683fa98a-09ab-4079-9fe4-de94721b3abd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-572489d2-b567-4387-bd48-819c82ddbaca"
+            }
+          ],
+          "id": "e7ea3596-4e87-4331-b843-9717b4683336",
+          "createdAt": "2026-07-28T02:41:11.000Z",
+          "updatedAt": "2026-07-28T02:41:11.000Z",
+          "uid": "35240-e7ea3596-4e87-4331-b843-9717b4683336"
+        }
+      ],
+      "id": "86e9e308-2acd-4300-b288-f1d0444ef595",
+      "createdAt": "2026-07-28T02:41:11.000Z",
+      "updatedAt": "2026-07-28T02:41:11.000Z",
+      "uid": "35240-86e9e308-2acd-4300-b288-f1d0444ef595"
+    },
+    {
+      "name": "fx",
+      "item": [
+        {
+          "name": "exchange",
+          "item": [
+            {
+              "name": "Execute an FX exchange for a cross-border flow",
+              "id": "932ebf94-1af7-409e-ae1b-e86e09afebce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://crossborder.secure.prometeoapi.net/v1/fx/exchange",
+                  "protocol": "https",
+                  "host": [
+                    "crossborder",
+                    "secure",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "v1",
+                    "fx",
+                    "exchange"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "24132a00-1beb-4253-bce5-99b95855c1d8",
+                  "name": "FX exchange executed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://crossborder.secure.prometeoapi.net/v1/fx/exchange",
+                      "protocol": "https",
+                      "host": [
+                        "crossborder",
+                        "secure",
+                        "prometeoapi",
+                        "net"
+                      ],
+                      "path": [
+                        "v1",
+                        "fx",
+                        "exchange"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:41:11.000Z",
+                  "updatedAt": "2026-07-28T02:41:11.000Z",
+                  "uid": "35240-24132a00-1beb-4253-bce5-99b95855c1d8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:41:11.000Z",
+              "updatedAt": "2026-07-28T02:41:11.000Z",
+              "uid": "35240-932ebf94-1af7-409e-ae1b-e86e09afebce"
+            }
+          ],
+          "id": "2b0b1a3d-c6be-4e42-ba0d-70b5a8266cfc",
+          "createdAt": "2026-07-28T02:41:11.000Z",
+          "updatedAt": "2026-07-28T02:41:11.000Z",
+          "uid": "35240-2b0b1a3d-c6be-4e42-ba0d-70b5a8266cfc"
+        }
+      ],
+      "id": "64064059-0ce8-4d18-a20a-fea820d1ea79",
+      "createdAt": "2026-07-28T02:41:11.000Z",
+      "updatedAt": "2026-07-28T02:41:11.000Z",
+      "uid": "35240-64064059-0ce8-4d18-a20a-fea820d1ea79"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://banking.prometeoapi.net"
+    }
+  ]
+}

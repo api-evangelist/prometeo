@@ -1,0 +1,270 @@
+{
+  "info": {
+    "_postman_id": "2f08127c-c743-469c-b9cb-f68a2a32ff6a",
+    "name": "Prometeo Account Validation Identity API",
+    "description": "Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.\n\nContact Support:\n Name: Prometeo Support\n Email: sales@prometeoapi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:41:14.000Z",
+    "updatedAt": "2026-07-28T02:41:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f08127c-c743-469c-b9cb-f68a2a32ff6a"
+  },
+  "item": [
+    {
+      "name": "query",
+      "item": [
+        {
+          "name": "Query Mexican CURP data by CURP code",
+          "id": "69cc073f-8348-4a2b-80fe-56ca3f174f6f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"curp\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://identity.prometeoapi.net/query",
+              "protocol": "https",
+              "host": [
+                "identity",
+                "prometeoapi",
+                "net"
+              ],
+              "path": [
+                "query"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e52876af-a467-4700-9b29-0ecba9deca83",
+              "name": "CURP record.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"curp\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://identity.prometeoapi.net/query",
+                  "protocol": "https",
+                  "host": [
+                    "identity",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "query"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:41:15.000Z",
+              "updatedAt": "2026-07-28T02:41:15.000Z",
+              "uid": "35240-e52876af-a467-4700-9b29-0ecba9deca83"
+            }
+          ],
+          "createdAt": "2026-07-28T02:41:15.000Z",
+          "updatedAt": "2026-07-28T02:41:15.000Z",
+          "uid": "35240-69cc073f-8348-4a2b-80fe-56ca3f174f6f"
+        }
+      ],
+      "id": "a7b9cc2a-c82f-4790-bfaf-23a83f86efb0",
+      "createdAt": "2026-07-28T02:41:15.000Z",
+      "updatedAt": "2026-07-28T02:41:15.000Z",
+      "uid": "35240-a7b9cc2a-c82f-4790-bfaf-23a83f86efb0"
+    },
+    {
+      "name": "reverse-query",
+      "item": [
+        {
+          "name": "Resolve a CURP from demographic data",
+          "id": "89800140-75d2-4cff-a3d1-1bfca761e982",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"first_surname\": \"<string>\",\n  \"last_surname\": \"<string>\",\n  \"birthday\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://identity.prometeoapi.net/reverse-query",
+              "protocol": "https",
+              "host": [
+                "identity",
+                "prometeoapi",
+                "net"
+              ],
+              "path": [
+                "reverse-query"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c627996b-cab7-41de-82a2-2e012d2203c8",
+              "name": "CURP resolved.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"first_surname\": \"<string>\",\n  \"last_surname\": \"<string>\",\n  \"birthday\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://identity.prometeoapi.net/reverse-query",
+                  "protocol": "https",
+                  "host": [
+                    "identity",
+                    "prometeoapi",
+                    "net"
+                  ],
+                  "path": [
+                    "reverse-query"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:41:15.000Z",
+              "updatedAt": "2026-07-28T02:41:15.000Z",
+              "uid": "35240-c627996b-cab7-41de-82a2-2e012d2203c8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:41:15.000Z",
+          "updatedAt": "2026-07-28T02:41:15.000Z",
+          "uid": "35240-89800140-75d2-4cff-a3d1-1bfca761e982"
+        }
+      ],
+      "id": "aeb86f52-cb3c-45f7-8ec4-bcd544a28e5f",
+      "createdAt": "2026-07-28T02:41:15.000Z",
+      "updatedAt": "2026-07-28T02:41:15.000Z",
+      "uid": "35240-aeb86f52-cb3c-45f7-8ec4-bcd544a28e5f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://banking.prometeoapi.net"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "provider": "prometeo",
+  "sources": [
+    "prometeo-account-validation-api-openapi.yml",
+    "prometeo-banking-api-openapi.yml",
+    "prometeo-cross-border-api-openapi.yml",
+    "prometeo-identity-api-openapi.yml",
+    "prometeo-payment-api-openapi.yml"
+  ],
+  "outputs": [
+    "prometeo-account-validation-api-openapi.yml",
+    "prometeo-banking-api-openapi.yml",
+    "prometeo-cross-border-api-openapi.yml",
+    "prometeo-identity-api-openapi.yml",
+    "prometeo-payment-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
