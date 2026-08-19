@@ -32,7 +32,7 @@ tags:
 - Cross-Border
 created: '2026-07-17'
 modified: '2026-07-17'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: prometeo:prometeo-fiscal-api
   name: Prometeo Fiscal API
