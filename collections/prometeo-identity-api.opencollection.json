@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Prometeo Account Validation Identity API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Mexican CURP data by CURP code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query Mexican CURP data by CURP code"
+        },
+        {
+          "info": {
+            "name": "Resolve a CURP from demographic data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/reverse-query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resolve a CURP from demographic data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

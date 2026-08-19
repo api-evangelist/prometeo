@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Prometeo Account Validation Cross-Border API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cross-Border",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cross-border pay-in intents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/payin/intent"
+          },
+          "docs": "List cross-border pay-in intents"
+        },
+        {
+          "info": {
+            "name": "Create a cross-border pay-in intent (virtual account / QR)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/payin/intent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a cross-border pay-in intent (virtual account / QR)"
+        },
+        {
+          "info": {
+            "name": "Get a cross-border pay-in intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/payin/intent/:intent_id",
+            "params": [
+              {
+                "name": "intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a cross-border pay-in intent"
+        },
+        {
+          "info": {
+            "name": "Refund a settled cross-border pay-in",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/payin/refund",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refund a settled cross-border pay-in"
+        },
+        {
+          "info": {
+            "name": "List cross-border payouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/payout/transfer"
+          },
+          "docs": "List cross-border payouts"
+        },
+        {
+          "info": {
+            "name": "Execute a cross-border payout over local rails (moves money)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/payout/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a cross-border payout over local rails (moves money)"
+        },
+        {
+          "info": {
+            "name": "Get a cross-border payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/payout/transfer/:payout_id",
+            "params": [
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a cross-border payout"
+        },
+        {
+          "info": {
+            "name": "Execute an FX exchange for a cross-border flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/fx/exchange",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute an FX exchange for a cross-border flow"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

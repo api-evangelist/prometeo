@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Prometeo Account Validation Payment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an account-to-account payment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/api/v1/payment-intent/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an account-to-account payment intent"
+        },
+        {
+          "info": {
+            "name": "Get an account-to-account payment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/api/v1/payment-intent/:intent_id",
+            "params": [
+              {
+                "name": "intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an account-to-account payment intent"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

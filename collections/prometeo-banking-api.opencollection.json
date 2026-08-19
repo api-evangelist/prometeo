@@ -1,0 +1,347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Prometeo Account Validation Banking API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate against a banking provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/login/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Starts a banking session against a provider using the end user's credentials. Returns a session `key` used on subsequent Banking calls. May return an interactive-login challenge (MFA) to be answered via /login-procedure/."
+        },
+        {
+          "info": {
+            "name": "Answer an interactive login (MFA) challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/login-procedure/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "answer",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Answer an interactive login (MFA) challenge"
+        },
+        {
+          "info": {
+            "name": "Get logged-in user / session preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/info/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "Get logged-in user / session preferences"
+        },
+        {
+          "info": {
+            "name": "List clients available on the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/client/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "List clients available on the session"
+        },
+        {
+          "info": {
+            "name": "Select a client for the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/client/:client_id/",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "Select a client for the session"
+        },
+        {
+          "info": {
+            "name": "List accounts for the authenticated session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/account/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "List accounts for the authenticated session"
+        },
+        {
+          "info": {
+            "name": "List movements (transactions) for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/movement/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List movements (transactions) for an account"
+        },
+        {
+          "info": {
+            "name": "List credit cards for the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/credit-card/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "List credit cards for the session"
+        },
+        {
+          "info": {
+            "name": "List movements for a credit card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/credit-card/:card_number/movements",
+            "params": [
+              {
+                "name": "card_number",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List movements for a credit card"
+        },
+        {
+          "info": {
+            "name": "List available banking providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/provider/"
+          },
+          "docs": "List available banking providers"
+        },
+        {
+          "info": {
+            "name": "Get detail / required login fields for a provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/provider/:provider_code/",
+            "params": [
+              {
+                "name": "provider_code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get detail / required login fields for a provider"
+        },
+        {
+          "info": {
+            "name": "List enrolled transfer destination accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/transfer/destinations",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "List enrolled transfer destination accounts"
+        },
+        {
+          "info": {
+            "name": "Pre-process (stage) an account-to-account transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/transfer/preprocess",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Pre-process (stage) an account-to-account transfer"
+        },
+        {
+          "info": {
+            "name": "Confirm a previously staged transfer (moves money)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banking.prometeoapi.net/transfer/confirm",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "request_id",
+                  "value": ""
+                },
+                {
+                  "name": "authorization_type",
+                  "value": ""
+                },
+                {
+                  "name": "authorization_data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Confirm a previously staged transfer (moves money)"
+        },
+        {
+          "info": {
+            "name": "End the banking session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banking.prometeoapi.net/logout/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Banking session key returned by /login/."
+              }
+            ]
+          },
+          "docs": "End the banking session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

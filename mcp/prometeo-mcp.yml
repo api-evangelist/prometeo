@@ -9,63 +9,67 @@ server:
   install: uv run prometeo_mcp/server.py
   repo: https://github.com/prometeoapi/prometeo-mcp
   hosted: false
-  notes: >-
-    Official open-source MCP server for the Prometeo API. Runs locally over
-    stdio (built for Claude Desktop and other MCP-compatible clients) using the
-    developer's own Prometeo X-API-Key. Not a remote/hosted endpoint.
+  notes: Official open-source MCP server for the Prometeo API. Runs locally over stdio (built for Claude
+    Desktop and other MCP-compatible clients) using the developer's own Prometeo X-API-Key. Not a remote/hosted
+    endpoint.
 resources:
-  - uri: openapi://all
-    description: Full Prometeo OpenAPI document surface.
-  - uri: openapi://{document_id}
-    description: A single Prometeo OpenAPI document by id.
+- uri: openapi://all
+  description: Full Prometeo OpenAPI document surface.
+- uri: openapi://{document_id}
+  description: A single Prometeo OpenAPI document by id.
 tools:
-  - name: curp_query
-    description: Query Mexican CURP data by CURP code.
-    source_operation: openapi/prometeo-openapi.yml#curpQuery
-  - name: curp_reverse_query
-    description: Resolve a CURP from demographic data.
-    source_operation: openapi/prometeo-openapi.yml#curpReverseQuery
-  - name: validate_account
-    description: Verify a bank account is valid and reachable.
-    source_operation: openapi/prometeo-openapi.yml#validateAccount
-  - name: get_validation_result
-    description: Retrieve the result of an asynchronous account validation.
-  - name: get_tasks
-    description: List account-validation tasks.
-  - name: banking_login
-    description: Start a banking session against a provider.
-    source_operation: openapi/prometeo-openapi.yml#login
-  - name: banking_get_accounts
-    description: List accounts for the authenticated banking session.
-    source_operation: openapi/prometeo-openapi.yml#listAccounts
-  - name: banking_get_movements
-    description: List movements/transactions for an account.
-    source_operation: openapi/prometeo-openapi.yml#listMovements
-  - name: banking_logout
-    description: End the banking session.
-    source_operation: openapi/prometeo-openapi.yml#logout
-  - name: crossborder_create_intent
-    description: Create a cross-border pay-in intent.
-    source_operation: openapi/prometeo-openapi.yml#createPayinIntent
-  - name: crossborder_get_intent
-    description: Get a cross-border pay-in intent.
-    source_operation: openapi/prometeo-openapi.yml#getPayinIntent
-  - name: crossborder_list_intents
-    description: List cross-border pay-in intents.
-    source_operation: openapi/prometeo-openapi.yml#listPayinIntents
-  - name: crossborder_refund_intent
-    description: Refund a settled cross-border pay-in.
-    source_operation: openapi/prometeo-openapi.yml#refundPayin
-  - name: crossborder_create_payout
-    description: Execute a cross-border payout over local rails.
-    source_operation: openapi/prometeo-openapi.yml#createPayout
-  - name: crossborder_get_payout
-    description: Get a cross-border payout.
-    source_operation: openapi/prometeo-openapi.yml#getPayout
-  - name: crossborder_list_payouts
-    description: List cross-border payouts.
-    source_operation: openapi/prometeo-openapi.yml#listPayouts
-notes: >-
-  Tool list captured from the published prometeo-mcp server README; additional
-  cross-border customer / withdrawal-account management tools exist. Mapped to
-  the repo OpenAPI operationIds where a 1:1 operation is present.
+- name: curp_query
+  description: Query Mexican CURP data by CURP code.
+  source_operation: openapi/prometeo-openapi.yml#curpQuery
+- name: curp_reverse_query
+  description: Resolve a CURP from demographic data.
+  source_operation: openapi/prometeo-openapi.yml#curpReverseQuery
+- name: validate_account
+  description: Verify a bank account is valid and reachable.
+  source_operation: openapi/prometeo-openapi.yml#validateAccount
+- name: get_validation_result
+  description: Retrieve the result of an asynchronous account validation.
+- name: get_tasks
+  description: List account-validation tasks.
+- name: banking_login
+  description: Start a banking session against a provider.
+  source_operation: openapi/prometeo-openapi.yml#login
+- name: banking_get_accounts
+  description: List accounts for the authenticated banking session.
+  source_operation: openapi/prometeo-openapi.yml#listAccounts
+- name: banking_get_movements
+  description: List movements/transactions for an account.
+  source_operation: openapi/prometeo-openapi.yml#listMovements
+- name: banking_logout
+  description: End the banking session.
+  source_operation: openapi/prometeo-openapi.yml#logout
+- name: crossborder_create_intent
+  description: Create a cross-border pay-in intent.
+  source_operation: openapi/prometeo-openapi.yml#createPayinIntent
+- name: crossborder_get_intent
+  description: Get a cross-border pay-in intent.
+  source_operation: openapi/prometeo-openapi.yml#getPayinIntent
+- name: crossborder_list_intents
+  description: List cross-border pay-in intents.
+  source_operation: openapi/prometeo-openapi.yml#listPayinIntents
+- name: crossborder_refund_intent
+  description: Refund a settled cross-border pay-in.
+  source_operation: openapi/prometeo-openapi.yml#refundPayin
+- name: crossborder_create_payout
+  description: Execute a cross-border payout over local rails.
+  source_operation: openapi/prometeo-openapi.yml#createPayout
+- name: crossborder_get_payout
+  description: Get a cross-border payout.
+  source_operation: openapi/prometeo-openapi.yml#getPayout
+- name: crossborder_list_payouts
+  description: List cross-border payouts.
+  source_operation: openapi/prometeo-openapi.yml#listPayouts
+notes: Tool list captured from the published prometeo-mcp server README; additional cross-border customer
+  / withdrawal-account management tools exist. Mapped to the repo OpenAPI operationIds where a 1:1 operation
+  is present.
+deployment:
+  mode: local-stdio
+  verified: searched
+  tools: 16
+  checked: '2026-08-12'
+  source: catalog MCP census
