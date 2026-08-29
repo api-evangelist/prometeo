@@ -8,6 +8,18 @@ description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure compan
   cross-border pay-in / payout / FX, account-to-account payments, Mexican CURP
   identity, and fiscal data (DIAN / SAT / CEP / BCU). All products authenticate
   with an X-API-Key header and offer a mock-data sandbox.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
