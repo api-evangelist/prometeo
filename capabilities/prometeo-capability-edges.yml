@@ -1,0 +1,34 @@
+slug: prometeo
+provider: Prometeo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Cross-Border
+  spec_file: prometeo-cross-border-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.92
+  evidence: POST /payout/transfer createPayout "Execute a cross-border payout over local rails (moves
+    money)"; POST /fx/exchange "Execute an FX exchange for a cross-border flow"
+  reason: Operations explicitly create and settle cross-border pay-ins, payouts and FX exchanges — international
+    payment management.
+- tag: Payment
+  spec_file: prometeo-payment-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.82
+  evidence: POST /api/v1/payment-intent/ createPaymentIntent "Create an account-to-account payment intent"
+  reason: Creates and retrieves account-to-account payment intents — capture and authorisation of payment
+    instructions.
