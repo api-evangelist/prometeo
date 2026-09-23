@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Prometeo Account Validation Banking API
+  title: Prometeo Banking API
   description: Prometeo is a LatAm-founded (Uruguay) fintech infrastructure platform exposing a single financial API over 7,500+ banking connections across the Americas. Products include the Banking API (account access, movements, transfers), Account Validation, Cross-Border payments (pay-in / payout / FX), the Payment (account-to-account) API, Identity (Mexico CURP), and Fiscal (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header.
   termsOfService: https://prometeoapi.com/en/legal/msa
   contact:
@@ -324,15 +324,92 @@ paths:
               schema:
                 type: object
 components:
-  parameters:
-    SessionKey:
-      name: key
-      in: query
-      required: true
-      description: Banking session key returned by /login/.
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key / session key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - logged_in
+          - interaction_required
+          - wrong_credentials
+          - error
+        key:
+          type: string
+        context:
+          type: string
+        field:
+          type: string
+    Movement:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        date:
+          type: string
+        detail:
+          type: string
+        debit:
+          type: number
+        credit:
+          type: number
+    TransferPreprocessRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        origin_account:
+          type: string
+        destination_institution:
+          type: string
+        destination_account:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: number
+        concept:
+          type: string
+      required:
+      - key
+      - origin_account
+      - destination_account
+      - amount
+      - currency
+    AccountsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        number:
+          type: string
+        branch:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
     Error:
       type: object
       properties:
@@ -367,91 +444,14 @@ components:
       - provider
       - username
       - password
-    Movement:
-      type: object
-      properties:
-        id:
-          type: integer
-        reference:
-          type: string
-        date:
-          type: string
-        detail:
-          type: string
-        debit:
-          type: number
-        credit:
-          type: number
-    Account:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        number:
-          type: string
-        branch:
-          type: string
-        currency:
-          type: string
-        balance:
-          type: number
-    TransferPreprocessRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        origin_account:
-          type: string
-        destination_institution:
-          type: string
-        destination_account:
-          type: string
-        currency:
-          type: string
-        amount:
-          type: number
-        concept:
-          type: string
-      required:
-      - key
-      - origin_account
-      - destination_account
-      - amount
-      - currency
-    AccountsResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-    LoginResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - logged_in
-          - interaction_required
-          - wrong_credentials
-          - error
-        key:
-          type: string
-        context:
-          type: string
-        field:
-          type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key / session key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    SessionKey:
+      name: key
+      in: query
+      required: true
+      description: Banking session key returned by /login/.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
