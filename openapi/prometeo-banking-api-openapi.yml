@@ -325,95 +325,6 @@ paths:
                 type: object
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-    LoginRequest:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: Provider code (from /provider/). Use "test" in sandbox.
-          example: test
-        username:
-          type: string
-        password:
-          type: string
-        type:
-          type: string
-          description: Optional document/login type required by some providers.
-      required:
-      - provider
-      - username
-      - password
-    Account:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        number:
-          type: string
-        branch:
-          type: string
-        currency:
-          type: string
-        balance:
-          type: number
-    Movement:
-      type: object
-      properties:
-        id:
-          type: integer
-        reference:
-          type: string
-        date:
-          type: string
-        detail:
-          type: string
-        debit:
-          type: number
-        credit:
-          type: number
-    AccountsResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-    MovementsResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        movements:
-          type: array
-          items:
-            $ref: '#/components/schemas/Movement'
-    LoginResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - logged_in
-          - interaction_required
-          - wrong_credentials
-          - error
-        key:
-          type: string
-        context:
-          type: string
-        field:
-          type: string
     TransferPreprocessRequest:
       type: object
       properties:
@@ -437,13 +348,95 @@ components:
       - destination_account
       - amount
       - currency
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key / session key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - logged_in
+          - interaction_required
+          - wrong_credentials
+          - error
+        key:
+          type: string
+        context:
+          type: string
+        field:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Provider code (from /provider/). Use "test" in sandbox.
+          example: test
+        username:
+          type: string
+        password:
+          type: string
+        type:
+          type: string
+          description: Optional document/login type required by some providers.
+      required:
+      - provider
+      - username
+      - password
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        number:
+          type: string
+        branch:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
+    MovementsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        movements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movement'
+    AccountsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    Movement:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        date:
+          type: string
+        detail:
+          type: string
+        debit:
+          type: number
+        credit:
+          type: number
   parameters:
     SessionKey:
       name: key
@@ -452,6 +445,13 @@ components:
       description: Banking session key returned by /login/.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key / session key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
