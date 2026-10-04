@@ -325,6 +325,44 @@ paths:
                 type: object
 components:
   schemas:
+    Movement:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        date:
+          type: string
+        detail:
+          type: string
+        debit:
+          type: number
+        credit:
+          type: number
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - logged_in
+          - interaction_required
+          - wrong_credentials
+          - error
+        key:
+          type: string
+        context:
+          type: string
+        field:
+          type: string
     TransferPreprocessRequest:
       type: object
       properties:
@@ -348,22 +386,30 @@ components:
       - destination_account
       - amount
       - currency
-    LoginResponse:
+    AccountsResponse:
       type: object
       properties:
         status:
           type: string
-          enum:
-          - logged_in
-          - interaction_required
-          - wrong_credentials
-          - error
-        key:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    Account:
+      type: object
+      properties:
+        id:
           type: string
-        context:
+        name:
           type: string
-        field:
+        number:
           type: string
+        branch:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
     LoginRequest:
       type: object
       properties:
@@ -382,28 +428,6 @@ components:
       - provider
       - username
       - password
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-    Account:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        number:
-          type: string
-        branch:
-          type: string
-        currency:
-          type: string
-        balance:
-          type: number
     MovementsResponse:
       type: object
       properties:
@@ -413,30 +437,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Movement'
-    AccountsResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-    Movement:
-      type: object
-      properties:
-        id:
-          type: integer
-        reference:
-          type: string
-        date:
-          type: string
-        detail:
-          type: string
-        debit:
-          type: number
-        credit:
-          type: number
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key / session key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     SessionKey:
       name: key
@@ -445,13 +452,6 @@ components:
       description: Banking session key returned by /login/.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key / session key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
