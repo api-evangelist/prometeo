@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/prometeo/integrations
+- https://n8n.io/integrations/prometeo/
+- https://composio.dev/toolkits/prometeo
+- https://monid.ai/tools/prometeo
+checked:
+- https://composio.dev/toolkits/prometeo
+- https://monid.ai/tools/prometeo
+- https://n8n.io/integrations/prometeo/
+- https://zapier.com/apps/prometeo/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
