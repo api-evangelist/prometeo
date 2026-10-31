@@ -1,4 +1,4 @@
-# Prometeo (prometeo)
+# Prometeo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,165 +66,157 @@
 
 Prometeo is a LatAm-founded (Uruguay) fintech infrastructure company offering a single financial API over 7,500+ banking connections across the Americas. Products span banking data access, real-time account validation, cross-border pay-in / payout / FX, account-to-account payments, Mexican CURP identity, and fiscal data (DIAN / SAT / CEP / BCU). All products authenticate with an X-API-Key header and offer a mock-data sandbox.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/prometeo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/prometeo/refs/heads/main/apis.yml)
+**Areas:** Open Banking · Payments · Fintech · Latin America · Financial Data · Account Validation · Cross-Border
 
-## Tags
+## Prometeo on APIs.io
 
-- Open Banking
-- Payments
-- FinTech
-- LatAm
-- Financial Data
-- Account Validation
-- Cross-Border
+Everything profiled for Prometeo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/prometeo/](https://apis.io/providers/prometeo/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-07-17
-- **Modified:** 2026-07-17
+- [Prometeo Fiscal API](https://apis.io/apis/prometeo/prometeo-fiscal-api/) — Government / fiscal data access - Colombia DIAN, Mexico SAT and CEP (payment receipt), and Uruguay BCU (central bank) filings and statements. Sandbox host…
+- [Prometeo Account Validation API](https://apis.io/apis/prometeo/prometeo-account-validation-api/) — Real-time bank account verification / ownership checks.
+- [Prometeo Banking API](https://apis.io/apis/prometeo/prometeo-banking-api/) — Bank account access, movements, transfers, credit cards, providers.
+- [Prometeo Cross-Border API](https://apis.io/apis/prometeo/prometeo-cross-border-api/) — Pay-in intents, payouts over local rails, and FX exchange.
+- [Prometeo Identity API](https://apis.io/apis/prometeo/prometeo-identity-api/) — Mexico CURP query and reverse query.
+- [Prometeo Payment API](https://apis.io/apis/prometeo/prometeo-payment-api/) — Account-to-account (open banking initiated) payment intents.
 
-## APIs
+### Published properties
 
-### Prometeo Banking API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Bank-account access across 7,500+ LatAm banking connections — session login (with MFA), accounts, movements/transactions, credit cards, providers, and account-to-account transfers. Sandbox host `banking.sandbox.prometeoapi.com` uses mock data.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.prometeoapi.com/docs/3-acceso-a-los-datos](https://docs.prometeoapi.com/docs/3-acceso-a-los-datos)
-- **Base URL:** `https://banking.prometeoapi.net`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Prometeo Webhooks](https://apis.io/asyncapis/prometeo/prometeo-webhooks/)
 
-- Open Banking
-- Account Information
-- Movements
-- Transfers
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.prometeoapi.com/docs/3-acceso-a-los-datos)
-- [API Reference](https://docs.prometeoapi.com/reference/listtransactions-1)
-- [OpenAPI](openapi/prometeo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/prometeo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [prometeo](https://apis.io/servers/prometeo/prometeo/)
 
-### Prometeo Account Validation API
+#### Agentic access (1)
 
-Real-time bank account verification confirming an account is valid, reachable, and owned before initiating a transfer or debit, across LatAm markets and the US.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://prometeoapi.com/en/bank-account-verification](https://prometeoapi.com/en/bank-account-verification)
-- **Base URL:** `https://account-validation.prometeoapi.net`
+- [Prometeo Agentic Access](https://apis.io/agentic-access/prometeo/prometeo-agentic-access/)
 
-#### Tags
+#### Collections (10)
 
-- Account Validation
-- Bank Account Verification
-- Anti-Fraud
+Postman and Open Collection request collections.
 
-#### Properties
+- [Prometeo Account Validation API](https://apis.io/collections/prometeo/open-prometeo-account-validation-api/)
+- [Prometeo Account Validation Banking API](https://apis.io/collections/prometeo/open-prometeo-banking-api/)
+- [Prometeo Account Validation Cross-Border API](https://apis.io/collections/prometeo/open-prometeo-cross-border-api/)
+- [Prometeo Account Validation Identity API](https://apis.io/collections/prometeo/open-prometeo-identity-api/)
+- [Prometeo Account Validation Payment API](https://apis.io/collections/prometeo/open-prometeo-payment-api/)
+- [Prometeo Account Validation API](https://apis.io/collections/prometeo/postman-prometeo-account-validation-api/)
+- [Prometeo Account Validation Banking API](https://apis.io/collections/prometeo/postman-prometeo-banking-api/)
+- [Prometeo Account Validation Cross-Border API](https://apis.io/collections/prometeo/postman-prometeo-cross-border-api/)
+- [Prometeo Account Validation Identity API](https://apis.io/collections/prometeo/postman-prometeo-identity-api/)
+- [Prometeo Account Validation Payment API](https://apis.io/collections/prometeo/postman-prometeo-payment-api/)
 
-- [API Reference](https://docs.prometeoapi.com/reference/validateaccount)
-- [OpenAPI](openapi/prometeo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/prometeo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+#### Overlays (1)
 
-### Prometeo Cross-Border Payments API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Cross-border money movement — pay-in intents (virtual accounts / QR), payouts over local rails, FX exchange, customer and withdrawal-account management. Sandbox host `crossborder-api.sandbox.prometeoapi.com`.
+- [Prometeo Openapi Overlay](https://apis.io/overlays/prometeo/prometeo-openapi-overlay/)
 
-- **Human URL:** [https://prometeoapi.com/en/bank-transfer-payments](https://prometeoapi.com/en/bank-transfer-payments)
-- **Base URL:** `https://crossborder.secure.prometeoapi.net/v1`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Cross-Border
-- Payouts
-- Pay-In
-- FX
+- [Prometeo Authentication](https://apis.io/security/prometeo/prometeo-authentication/)
+- [Prometeo Domain Security](https://apis.io/security/prometeo/prometeo-domain-security/)
+- [Prometeo Trust Center](https://apis.io/security/prometeo/prometeo-trust-center/)
+- [Prometeo Vulnerability Disclosure](https://apis.io/security/prometeo/prometeo-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.prometeoapi.com)
-- [OpenAPI](openapi/prometeo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/prometeo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+Published plans, tiers and prices.
 
-### Prometeo Payment API
+- [Prometeo Plans Pricing](https://apis.io/plans/prometeo/prometeo-plans-pricing/)
 
-Open-banking payment initiation — create and retrieve account-to-account payment intents that move funds directly from a payer's bank account.
+#### Rate limits (1)
 
-- **Human URL:** [https://prometeoapi.com/en/bank-transfer-payments](https://prometeoapi.com/en/bank-transfer-payments)
-- **Base URL:** `https://payment.prometeoapi.net`
+Published request limits.
 
-#### Tags
+- [Prometeo Rate Limits](https://apis.io/rate-limits/prometeo/prometeo-rate-limits/)
 
-- Payments
-- Account to Account
-- Payment Initiation
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.prometeoapi.com)
-- [OpenAPI](openapi/prometeo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/prometeo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Prometeo Finops](https://apis.io/finops/prometeo/prometeo-finops/)
 
-### Prometeo Identity API (CURP)
+## Where to find this API
 
-Mexican CURP identity lookups — query a CURP record by code, or reverse-query a CURP from demographic data for KYC and onboarding.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://docs.prometeoapi.com](https://docs.prometeoapi.com)
-- **Base URL:** `https://identity.prometeoapi.net`
-
-#### Tags
-
-- Identity
-- KYC
-- CURP
-- Mexico
-
-#### Properties
-
-- [Documentation](https://docs.prometeoapi.com)
-- [OpenAPI](openapi/prometeo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/prometeo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-
-### Prometeo Fiscal API
-
-Government / fiscal data access — Colombia DIAN, Mexico SAT and CEP (payment receipt), and Uruguay BCU (central bank) filings and statements. Sandbox host `fiscal.sandbox.prometeoapi.com`.
-
-- **Human URL:** [https://docs.prometeoapi.com](https://docs.prometeoapi.com)
-- **Base URL:** `https://fiscal.prometeoapi.net`
-
-#### Tags
-
-- Fiscal
-- Tax Data
-- DIAN
-- SAT
-- BCU
-
-#### Properties
-
-- [Documentation](https://docs.prometeoapi.com)
-
-## Authentication
-
-All Prometeo products authenticate the application with a per-account API key sent in the `X-API-Key` request header. Keys are issued from `dashboard.prometeoapi.com`; a mock-data sandbox key is available immediately on first login. The Banking API additionally establishes a per-end-user session — `POST /login/` (optionally answered via `/login-procedure/` for MFA) returns a session `key` passed on subsequent Banking calls. Some services may additionally require mutual TLS (mTLS).
-
-See [authentication/prometeo-authentication.yml](authentication/prometeo-authentication.yml).
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/prometeoapi)
-- [LinkedIn](https://www.linkedin.com/company/prometeoapi)
 - [Website](https://prometeoapi.com/en)
 - [Documentation](https://docs.prometeoapi.com)
-- [Plans](plans/prometeo-plans-pricing.yml)
-- [Rate Limits](rate-limits/prometeo-rate-limits.yml)
-- [Fin Ops](finops/prometeo-finops.yml)
-- [Agentic Access](agentic-access/prometeo-agentic-access.yml)
-- [Trust Center](security/prometeo-trust-center.yml)
-- [Vulnerability Disclosure](security/prometeo-vulnerability-disclosure.yml)
-- [Domain Security](security/prometeo-domain-security.yml)
+- [Getting started](https://docs.prometeoapi.com/docs/gu%C3%ADa-r%C3%A1pida)
+- [API reference](https://docs.prometeoapi.com/reference)
+- [Pricing](https://prometeoapi.com/en/pricing)
+- [Sign up](https://prometeoapi.com/accounts/create/)
 - [Blog](https://prometeoapi.com/en/blog)
+- [Terms of service](https://prometeoapi.com/en/legal/msa)
+- [Privacy policy](https://prometeoapi.com/en/legal/privacy-policy)
+- [GitHub](https://github.com/prometeoapi)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 45.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 51.9 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 64.9 |
+| Access clarity | 31.6 |
+
+**Agent readiness 30.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 25.2** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/prometeo/](https://apis.io/providers/prometeo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Prometeo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/prometeo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
